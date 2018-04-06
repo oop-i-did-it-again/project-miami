@@ -1,9 +1,19 @@
 Team Name:
 
+
+
 Members:
+
 Prabhdeep Samra, Tyler Lennen, Justin Lok, Mark Armstrong\
+
 
 Proposal:
 
+Top down 2D shooter a la Hotline Miami
 
 Plan:
+
+Prabh - code monkey
+Tyler - ui design, team leader
+Justin - engine design / implementation
+Mark - sound
