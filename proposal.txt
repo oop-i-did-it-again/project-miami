@@ -1,19 +1,53 @@
 Team Name:
-
-
+Oop I Did It Again
 
 Members:
+Prabhdeep Samra, Tyler Lennen, Justin Lok, Mark Armstrong
 
-Prabhdeep Samra, Tyler Lennen, Justin Lok, Mark Armstrong\
+Title / Description:
+Project Miami - A top down 2D shooter a la Hotline Miami
+
+Roles:
+Prabhdeep - Framework/implementation
+Tyler -  art/menus, cause thats whats important
+Justin - Framework/implementation
+Mark - sound guy 
+
+Basic features:
+You can move around
+Shoot people
+Target spawner
+Working Collision detection
+Basic score counter
+
+Things we should implement but can’t if we don't have time:
+Textures for characters
+Some type of AI for baddies
+
+Cool things if we have time:
+Dynamic sound/music
+Procedural level generation
+Power ups
+Weapon system
+Menu system with full game customization
+Functional doors/Doors to break down
+
+In your dreams:
+Proper art 
+Microtransactions
+Online multiplayer
+A good game ಠ_ಠ
 
 
-Proposal:
 
-Top down 2D shooter a la Hotline Miami
 
-Plan:
 
-Prabh - code monkey
-Tyler - ui design, team leader
-Justin - engine design / implementation
-Mark - sound
+Schedule:
+
+April 6, 2018 - Complete Project Proposal
+April 12 , 2018 - Finalise game design, begin implementation
+April 22, 2018 - Complete phase 2  of project (basic features complete)
+May 7, 2018 - Project Complete (We cram as much optional features in there)
+May 8, 2018 - Presentation in class (Hope it doesn’t seg fault)
+
+
