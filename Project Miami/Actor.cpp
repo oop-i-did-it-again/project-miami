@@ -17,7 +17,7 @@ void Actor::init(){
 }
 
 void Actor::update(int delta){
-    x += 0.005;
+    x += 0.001 * delta;
     if(x > 1)
         x = -1;
 }
