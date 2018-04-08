@@ -7,12 +7,17 @@
  * 
  */
 class Entity: public Gamepiece{
-    float radius;
+
 public:
+
     Entity();
     ~Entity();
-
-
+    virtual void draw();
+    
+    float radius;
+    float r;
+    float g;
+    float b;
 };
 
 #endif

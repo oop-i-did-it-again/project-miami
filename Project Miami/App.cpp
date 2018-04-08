@@ -47,7 +47,6 @@ void App::draw() {
     // Swap the buffers to see the result of what we drew
     glFlush();
     glutSwapBuffers();
-
 }
 
 void App::mouseDown(float x, float y){
@@ -69,8 +68,18 @@ void App::mouseDrag(float x, float y){
 }
 
 void App::keyPress(unsigned char key) {
+    Player *p = game->getPlayerObject();
     if (key == 27){
         // Exit the app when Esc key is pressed
         exit(0);
     }
+    // redo this; this only processes one key at a time
+    if (key == 'w')
+        p->moveU();
+    if (key == 's')
+        p->moveD();
+    if (key == 'a')
+        p->moveL();
+    if (key == 'd')
+        p->moveR();
 }

@@ -1,1 +1,1 @@
-Actor.o: Actor.cpp Actor.h Gamepiece.h GlutApp.h
+Actor.o: Actor.cpp Actor.h Entity.h Gamepiece.h GlutApp.h

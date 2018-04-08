@@ -11,7 +11,7 @@ class App: public GlutApp {
     int t;
     int lastT;
     double delta;
-    const double TARGET_FPS = 60.0;
+    const double TARGET_FPS = 62.0;
 
     timespec ts;
     Game* game; // gamemanager, handles all game logic
