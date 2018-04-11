@@ -50,4 +50,6 @@ void Player::normalize(){
         vy = vy * DIAG_VSPEED;
         vx = vx * DIAG_VSPEED;
     }   
+    
+
 }

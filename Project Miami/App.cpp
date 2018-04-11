@@ -67,19 +67,33 @@ void App::mouseDrag(float x, float y){
     redraw();
 }
 
+void App::keyLift(unsigned char key) {
+   
+        if (key == 'w' || key == 'a' || key == 's' || key == 'd')
+            game->removeKey(key);
+}
+
 void App::keyPress(unsigned char key) {
     Player *p = game->getPlayerObject();
     if (key == 27){
         // Exit the app when Esc key is pressed
         exit(0);
     }
+    
     // redo this; this only processes one key at a time
-    if (key == 'w')
-        p->moveU();
-    if (key == 's')
-        p->moveD();
-    if (key == 'a')
-        p->moveL();
-    if (key == 'd')
-        p->moveR();
+    if (key == 'w' || key == 'a' || key == 's' || key == 'd')
+       game->addKey(key);
+    
+    for(int i = 0; i < game->keyListSize(); i++){
+        if (game->keyListContains('w'))
+            p->moveU();
+        if (game->keyListContains('a'))
+            p->moveL();
+        if (game->keyListContains('s'))
+            p->moveD();
+        if (game->keyListContains('d'))
+            p->moveR();
+
+    }
 }
+

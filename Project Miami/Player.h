@@ -2,6 +2,7 @@
 #define Player_hpp
 #include "Actor.h"
 #include <cmath>
+
 class Player: public Actor{
 
     public:
@@ -13,7 +14,12 @@ class Player: public Actor{
         void moveR();
         void moveU();
         void moveD();
+        void moveUL();
+        void moveUR();
+        void moveDL();
+        void moveDR();
         void normalize();
+
 };
 
 #endif

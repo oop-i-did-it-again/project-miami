@@ -26,6 +26,7 @@ GlutApp::GlutApp(const char* label, int x, int y, int w, int h) {
     glutMouseFunc(mouseCB);
     glutMotionFunc(motionCB);
     glutKeyboardFunc(keyboardCB);
+    glutKeyboardUpFunc(keyboardUpCB);
     glutSpecialFunc(specialCB);
     glutIdleFunc(idleCB);
     glutReshapeFunc(reshapeCB);
@@ -73,6 +74,11 @@ void GlutApp::resize ( int w, int h ) {
 }
 
 void GlutApp::keyPress(unsigned char key){
+    // Exit the application when any key is pressed
+    exit(0);
+}
+
+void GlutApp::keyLift(unsigned char key){
     // Exit the application when any key is pressed
     exit(0);
 }
@@ -158,6 +164,11 @@ void GlutApp::passiveCB (int x, int y){
 void GlutApp::keyboardCB(unsigned char key, int x, int y){
     // When a key is pressed, call our keypress handler
     app->keyPress(key);
+}
+
+void GlutApp::keyboardUpCB(unsigned char key, int x, int y){
+    // When a key is pressed, call our keypress handler
+    app->keyLift(key);
 }
 
 void GlutApp::specialCB(int key, int x, int y){
