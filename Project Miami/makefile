@@ -1,11 +1,10 @@
-
 # CSE170 glutapp makefile v2.1 - M. Kallmann 2009
 
 SOURCES := $(shell echo $(./)*.cpp)
 DEPENDS = $(SOURCES:.cpp=.d)
 OBJECTS = $(SOURCES:.cpp=.o)
 OS = $(shell uname) # For Mac OS detection (by Rolando Yanez, Raymond Harris)
-PROGRAM = glutapp
+PROGRAM = miami
 
 #######################################################################
 
