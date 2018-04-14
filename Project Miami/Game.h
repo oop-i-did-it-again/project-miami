@@ -6,10 +6,11 @@
 #include <vector>
 
 class Game{
-    Gamepiece* gp; //replace this with array of gamepieces
+    std::vector<Gamepiece*> gp; //replace this with array of gamepieces
     Player* p;
     Player* p2;
     std::vector <unsigned char> keyList;
+    
     
 public:
     Game();
