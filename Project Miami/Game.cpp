@@ -13,20 +13,22 @@ void Game::init(){
 
     p = new Player();
     p2 = new Player();
+
+    gp.push_back(p);
+    gp.push_back(p2);
 }
 
 void Game::update(int delta){
     // Calls update function from every gamepiece
     // delta is milliseconds elapsed since last frame
-    p->update(delta);
-    p2->moveL();
-    p2->update(delta);
+    for(int i = 0; i < gp.size(); i++)
+        gp[i]->update(delta);
 }
 
 void Game::draw(){
     //  Calls draw function from every gamepiece
-    p->draw();
-    p2->draw();
+    for(int i = 0; i < gp.size(); i++)
+        gp[i]->draw();
 }
 
 Player* Game::getPlayerObject(){
