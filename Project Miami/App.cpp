@@ -12,6 +12,7 @@ App::App(const char* label, int x, int y, int w, int h): GlutApp(label, x, y, w,
     delta = 0.0;
 
     game = new Game();
+    
 }
 
 void App::idle(){

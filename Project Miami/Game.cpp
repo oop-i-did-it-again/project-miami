@@ -21,6 +21,7 @@ void Game::init(){
 void Game::update(int delta){
     // Calls update function from every gamepiece
     // delta is milliseconds elapsed since last frame
+    p2->moveL();
     for(int i = 0; i < gp.size(); i++)
         gp[i]->update(delta);
 }
