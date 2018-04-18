@@ -2,9 +2,12 @@
 #define Gamepiece_hpp
 #include "GlutApp.h"
 
-class Gamepiece{
 
+class Game;
+
+class Gamepiece{
 public:
+
     float x;
     float y;
 
@@ -14,6 +17,9 @@ public:
     virtual void init();
     virtual void update(int delta);
     virtual void draw();
+
+    static Game* gm;
+    static void setGM(Game* gm);
 };
 
 #endif

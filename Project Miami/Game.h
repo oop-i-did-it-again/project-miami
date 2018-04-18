@@ -7,8 +7,6 @@
 
 class Game{
     std::vector<Gamepiece*> gp; //replace this with array of gamepieces
-    Player* p;
-    Player* p2;
     std::vector <unsigned char> keyList;
     
     
@@ -24,6 +22,8 @@ public:
     void removeKey(unsigned char key);
     int keyListSize();
     bool keyListContains(unsigned char key);
+
+    void addGP(Gamepiece*);
 };
 
 #endif

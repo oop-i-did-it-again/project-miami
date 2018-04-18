@@ -1,6 +1,7 @@
 #include "Game.h"
 
 Game::Game(){
+    Gamepiece::setGM(this);
     init();
 }
 
@@ -10,18 +11,15 @@ void Game::init(){
     // initializes every gamepiece
     // may not be necessary if we gamepieces calls their own inits
     // from their constructors. we shall see
-
-    p = new Player();
-    p2 = new Player();
-
-    gp.push_back(p);
-    gp.push_back(p2);
+    Player* p = new Player();
+    Player* p2 = new Player();
 }
 
 void Game::update(int delta){
     // Calls update function from every gamepiece
     // delta is milliseconds elapsed since last frame
-    p2->moveL();
+    Player* example = dynamic_cast<Player*>(gp[1]);
+    example->moveL();
     for(int i = 0; i < gp.size(); i++)
         gp[i]->update(delta);
 }
@@ -33,6 +31,7 @@ void Game::draw(){
 }
 
 Player* Game::getPlayerObject(){
+    Player* p = dynamic_cast<Player*>(gp[0]);
     return p;
 }
 
@@ -61,3 +60,7 @@ bool Game::keyListContains(unsigned char key){
             contains = true;
     return contains;
     }
+
+void Game::addGP(Gamepiece* gamepiece){
+    this->gp.push_back(gamepiece);
+}

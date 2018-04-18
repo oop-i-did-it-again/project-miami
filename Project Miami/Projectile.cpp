@@ -6,7 +6,7 @@ Projectile::Projectile(float x, float y, float rad, int lifeTime, float speed){
     this->y = y;
     this->dir = rad;
     this->lifeTime = lifeTime;
-    this->SPEED = speed;
+    this->speed = speed;
 }
 
 Projectile::~Projectile(){
@@ -19,8 +19,8 @@ void Projectile::update(int delta){
         removeProjectile();
 
     //now move the projectile, then check for collisions
-    x +=  SPEED * delta * cos(dir);
-    y +=  SPEED * delta * sin(dir);
+    x +=  speed * delta * cos(dir);
+    y +=  speed * delta * sin(dir);
 }
 
 void Projectile::draw(){
