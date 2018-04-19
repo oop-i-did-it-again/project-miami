@@ -8,10 +8,11 @@
 class Game{
     std::vector<Gamepiece*> gp; //replace this with array of gamepieces
     std::vector <unsigned char> keyList;
-    
-    
-public:
+    static Game *instance;
     Game();
+public:
+    
+    static Game* getGame();
     ~Game();
     
     void init();

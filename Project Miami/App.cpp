@@ -11,7 +11,7 @@ App::App(const char* label, int x, int y, int w, int h): GlutApp(label, x, y, w,
     lastT = 0;
     delta = 0.0;
 
-    game = new Game();
+    game = Game::getGame();
     
 }
 
