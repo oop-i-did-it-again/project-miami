@@ -45,14 +45,21 @@ void Game::update(int delta){
        hero->moveR();
     }
     
+    for(int i = 0; i < heroBullets.size(); i++)
+        heroBullets[i]->updatep(delta);
+    
     for(int i = 0; i < gp.size(); i++)
         gp[i]->update(delta);
+    
+
 }
 
 void Game::draw(){
     //  Calls draw function from every gamepiece
     for(int i = 0; i < gp.size(); i++)
         gp[i]->draw();
+    for(int i = 0; i < heroBullets.size(); i++)
+        heroBullets[i]->draw();
 }
 
 Player* Game::getPlayerObject(){
@@ -60,32 +67,13 @@ Player* Game::getPlayerObject(){
     return p;
 }
 
-void Game::addKey(unsigned char key){
 
-    if (!keyListContains(key)){
-         keyList.push_back(key);
-        std:: cout<<"Added " << key <<std::endl;
-    }
-}
-void Game::removeKey(unsigned char key){
-    for(int i = 0; i <keyList.size(); i++)
-        if(keyList[i] == key){
-            keyList.erase(keyList.begin()+i);
-            std:: cout<<"Removed " << key <<std::endl;
-        }
-    }
-int Game::keyListSize(){
-    return keyList.size();
-    }
-    
-bool Game::keyListContains(unsigned char key){
-    bool contains = false;
-    for(int i = 0; i <keyList.size(); i++)
-        if(keyList[i] == key)
-            contains = true;
-    return contains;
-    }
 
 void Game::addGP(Gamepiece* gamepiece){
     this->gp.push_back(gamepiece);
+}
+
+void Game::addheroBullet(Projectile* bullet){
+    this->heroBullets.push_back(bullet);
+    std::cout<<"addedbullet"<<std::endl;
 }
