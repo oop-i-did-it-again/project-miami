@@ -19,7 +19,10 @@ class Player: public Actor{
         void moveDL();
         void moveDR();
         void normalize();
-
+        bool up = false;
+        bool down = false;
+        bool left = false;
+        bool right = false;
 };
 
 #endif

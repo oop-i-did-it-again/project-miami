@@ -23,7 +23,7 @@ void App::idle(){
     // Update and redraw the scene when specified timestep passed
     if(delta >= 1000/TARGET_FPS){
         // Uncomment to cout fps to console
-        //cout << "FPS: " << 1000/delta << endl; 
+        cout << "FPS: " << 1000/delta << endl; 
 
         lastT = t;
         game->update(delta);
@@ -70,8 +70,19 @@ void App::mouseDrag(float x, float y){
 
 void App::keyLift(unsigned char key) {
    
-        if (key == 'w' || key == 'a' || key == 's' || key == 'd')
-            game->removeKey(key);
+            Player *p = game->getPlayerObject();
+
+ 
+        if (key == 'w')
+            p->up = false;
+        if (key == 'a' )
+            p->left = false;
+        if (key == 's' )
+            p->down = false;
+        if (key == 'd' )
+            p->right=false;
+
+    
 }
 
 void App::keyPress(unsigned char key) {
@@ -80,21 +91,18 @@ void App::keyPress(unsigned char key) {
         // Exit the app when Esc key is pressed
         exit(0);
     }
-    
-    // redo this; this only processes one key at a time
-    if (key == 'w' || key == 'a' || key == 's' || key == 'd')
-       game->addKey(key);
-    
-    for(int i = 0; i < game->keyListSize(); i++){
-        if (game->keyListContains('w'))
-            p->moveU();
-        if (game->keyListContains('a'))
-            p->moveL();
-        if (game->keyListContains('s'))
-            p->moveD();
-        if (game->keyListContains('d'))
-            p->moveR();
 
-    }
+  
+        if (key == 'w')
+            p->up = true;
+        if (key == 'a' )
+            p->left = true;
+        if (key == 's' )
+            p->down = true;
+        if (key == 'd' )
+            p->right=true;
+
+
+
 }
 

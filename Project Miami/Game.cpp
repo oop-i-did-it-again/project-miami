@@ -28,8 +28,23 @@ void Game::init(){
 void Game::update(int delta){
     // Calls update function from every gamepiece
     // delta is milliseconds elapsed since last frame
+    Player* hero = dynamic_cast<Player*>(gp[0]);
     Player* example = dynamic_cast<Player*>(gp[1]);
     example->moveL();
+    
+    if (hero->up){
+        hero->moveU();
+    }
+    if (hero->down){
+       hero->moveD();
+    }
+    if (hero->left){
+        hero->moveL();
+    }
+    if (hero->right){
+       hero->moveR();
+    }
+    
     for(int i = 0; i < gp.size(); i++)
         gp[i]->update(delta);
 }
