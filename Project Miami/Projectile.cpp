@@ -28,10 +28,13 @@ void Projectile::updatep(int delta){
 }
 
 void Projectile::draw(){
-        glPointSize(radius);
+    glPointSize(10);
+    
+    glColor3d(1,0,0);
     // Draw something
     glBegin(GL_POINTS);
     glVertex2f(x, y);
+     glColor3d(1,1,1);
     glEnd();
 }
 

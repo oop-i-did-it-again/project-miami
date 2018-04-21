@@ -1,18 +1,18 @@
 #include "Entity.h"
 
 Entity::Entity(){
-    radius = 80;
-    r = 0.5;
-    g = 0.5;
-    b = 0.5;
+    radius = 40;
+   r = 1.0;
+    g = 0.0;
+    b = 0.0;
 }
 
 
 Entity::Entity(bool c){
     isCircle = c;
-    r = 0.5;
-    g = 0.5;
-    b = 0.5;
+    r = 1.0;
+    g = 0.0;
+    b = 0.0;
     
     if(c){
     radius = 40;

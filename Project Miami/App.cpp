@@ -59,7 +59,7 @@ void App::mouseDown(float x, float y){
     Player *p = game->getPlayerObject();
     
 
-    game->addheroBullet(new Projectile(p->x,p->y, atan2(y- p->y,x-p->x), 1000,1));
+    game->addheroBullet(new Projectile(p->x,p->y, atan2(y- p->y,x-p->x), 1000,.005));
    
     
 
