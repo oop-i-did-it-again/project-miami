@@ -28,14 +28,19 @@ void Projectile::updatep(int delta){
 }
 
 void Projectile::draw(){
-    glPointSize(10);
-    
+
     glColor3d(1,0,0);
     // Draw something
-    glBegin(GL_POINTS);
-    glVertex2f(x, y);
+    
+    //draw circular bullet. replace with texture
+    glBegin(GL_POLYGON);
+	for (double i = 0; i <2*3.141692;i+=3.151592/50)
+		glVertex2f(cos(i)*.02+x,sin(i)*.02+y);
+	glEnd();
+
+
      glColor3d(1,1,1);
-    glEnd();
+
 }
 
 void Projectile::removeProjectile(){
