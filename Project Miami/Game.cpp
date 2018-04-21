@@ -44,10 +44,15 @@ void Game::update(int delta){
     if (hero->right){
        hero->moveR();
     }
-    
+
     for(int i = 0; i < heroBullets.size(); i++)
-        heroBullets[i]->updatep(delta);
-    
+        if( heroBullets[i]->lifeTime > 0)
+            heroBullets[i]->updatep(delta);
+        else{
+            heroBullets[i]->removeProjectile();
+            heroBullets.erase(heroBullets.begin()+i);
+        }
+        
     for(int i = 0; i < gp.size(); i++)
         gp[i]->update(delta);
     
@@ -75,5 +80,4 @@ void Game::addGP(Gamepiece* gamepiece){
 
 void Game::addheroBullet(Projectile* bullet){
     this->heroBullets.push_back(bullet);
-    std::cout<<"addedbullet"<<std::endl;
 }

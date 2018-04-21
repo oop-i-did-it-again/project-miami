@@ -58,12 +58,18 @@ void App::mouseDown(float x, float y){
     
     Player *p = game->getPlayerObject();
     
+    if (game->gun == shotgun){
+    game->addheroBullet(new Projectile(p->x,p->y, atan2(y- p->y,x-p->x), 1000,.003, .01));
+    game->addheroBullet(new Projectile(p->x,p->y, atan2(y- p->y,x-p->x)+.05, 1000,.003,.01));
+    game->addheroBullet(new Projectile(p->x,p->y, atan2(y- p->y,x-p->x)+.1, 1000,.003,.01));
+    game->addheroBullet(new Projectile(p->x,p->y, atan2(y- p->y,x-p->x)-.05, 1000,.003,.01));
+    game->addheroBullet(new Projectile(p->x,p->y, atan2(y- p->y,x-p->x)-.1, 1000,.003,.01));
 
-    game->addheroBullet(new Projectile(p->x,p->y, atan2(y- p->y,x-p->x), 1000,.005));
-   
-    
+    }
 
-
+    if (game->gun == pistol){
+    game->addheroBullet(new Projectile(p->x,p->y, atan2(y- p->y,x-p->x), 1000,.002,.02));
+    }
 
     // Redraw the scene
     redraw();
@@ -100,6 +106,8 @@ void App::keyPress(unsigned char key) {
     if (key == 27){
         // Exit the app when Esc key is pressed
         exit(0);
+        
+
     }
 
   
@@ -111,8 +119,9 @@ void App::keyPress(unsigned char key) {
             p->down = true;
         if (key == 'd' )
             p->right=true;
-
-
-
+        if (key == '3' )
+            game->gun = shotgun;
+        if (key == '1' )
+           game->gun = pistol;
 }
 

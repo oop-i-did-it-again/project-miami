@@ -1,30 +1,31 @@
 #include "Projectile.h"
 
 
-Projectile::Projectile(float x, float y, float rad, int lifeTime, float speed){
+Projectile::Projectile(float x, float y, float rad, int lifeTime, float speed, float size){
     this->x = x;
     this->y = y;
+    this->radius = size;
     this->dir = rad;
     this->lifeTime = lifeTime;
     this->speed = speed;
 }
 
 Projectile::~Projectile(){
-    
+
 }
 
 void Projectile::updatep(int delta){
     lifeTime -= delta;
-    if(lifeTime <= 0)
-        removeProjectile();
-    else{
+
+    if (lifeTime < -100)
+        delete this;
     //now move the projectile, then check for collisions
     x +=  speed * delta * cos(dir);
     y +=  speed * delta * sin(dir);
-     std::cout<<x<<", "<<y<<std::endl;
      
     draw();
-    }
+    
+
 }
 
 void Projectile::draw(){
@@ -34,8 +35,8 @@ void Projectile::draw(){
     
     //draw circular bullet. replace with texture
     glBegin(GL_POLYGON);
-	for (double i = 0; i <2*3.141692;i+=3.151592/50)
-		glVertex2f(cos(i)*.02+x,sin(i)*.02+y);
+	for (double i = 0; i <2*3.141692;i+=3.151592/75)
+		glVertex2f(cos(i)*radius+x,sin(i)*radius+y);
 	glEnd();
 
 
@@ -44,5 +45,9 @@ void Projectile::draw(){
 }
 
 void Projectile::removeProjectile(){
-
+    //just send to the nether
+    this->x = 666;
+    this->y = 666;
+    this->dir = 0;
+    this->speed = 0;
 }

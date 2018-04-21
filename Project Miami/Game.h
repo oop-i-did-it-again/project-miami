@@ -5,6 +5,8 @@
 #include "Player.h"
 #include <vector>
 
+enum weapon { pistol, shotgun, mini };
+
 class Game{
     std::vector<Gamepiece*> gp; //replace this with array of gamepieces
     std::vector<Projectile*> heroBullets; 
@@ -15,7 +17,7 @@ public:
     
     static Game* getGame();
     ~Game();
-    
+    weapon gun = pistol;
     void init();
     void update(int delta); // called every frame, handle game logic here
     void draw(); // called every frame, render stuff here
