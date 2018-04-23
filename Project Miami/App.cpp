@@ -59,16 +59,16 @@ void App::mouseDown(float x, float y){
     Player *p = game->getPlayerObject();
     
     if (game->gun == shotgun){
-    game->addheroBullet(new Projectile(p->x,p->y, atan2(y- p->y,x-p->x), 1000,.003, .01));
-    game->addheroBullet(new Projectile(p->x,p->y, atan2(y- p->y,x-p->x)+.05, 1000,.003,.01));
-    game->addheroBullet(new Projectile(p->x,p->y, atan2(y- p->y,x-p->x)+.1, 1000,.003,.01));
-    game->addheroBullet(new Projectile(p->x,p->y, atan2(y- p->y,x-p->x)-.05, 1000,.003,.01));
-    game->addheroBullet(new Projectile(p->x,p->y, atan2(y- p->y,x-p->x)-.1, 1000,.003,.01));
+        new Projectile(p->x,p->y, atan2(y- p->y,x-p->x), 1000,.003, .01);
+        new Projectile(p->x,p->y, atan2(y- p->y,x-p->x)+.05, 1000,.003,.01);
+        new Projectile(p->x,p->y, atan2(y- p->y,x-p->x)+.1, 1000,.003,.01);
+        new Projectile(p->x,p->y, atan2(y- p->y,x-p->x)-.05, 1000,.003,.01);
+        new Projectile(p->x,p->y, atan2(y- p->y,x-p->x)-.1, 1000,.003,.01);
 
     }
 
     if (game->gun == pistol){
-    game->addheroBullet(new Projectile(p->x,p->y, atan2(y- p->y,x-p->x), 1000,.002,.02));
+        new Projectile(p->x,p->y, atan2(y- p->y,x-p->x), 1000,.002,.02);
     }
 
     // Redraw the scene

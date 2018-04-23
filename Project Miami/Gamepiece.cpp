@@ -10,7 +10,9 @@ Gamepiece::Gamepiece(){
     init();
 }
 
-Gamepiece::~Gamepiece(){}
+Gamepiece::~Gamepiece(){
+
+}
 
 void Gamepiece::init(){
     // Do something
