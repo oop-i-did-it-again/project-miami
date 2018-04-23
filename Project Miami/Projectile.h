@@ -11,7 +11,7 @@ public:
     float dir;
     Projectile(float x, float y, float rad, int lifeTime, float speed,float size);
     ~Projectile();
-    void updatep(int delta);
+    void update(int delta);
     void draw();
 
     void removeProjectile();

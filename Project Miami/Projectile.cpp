@@ -1,5 +1,5 @@
 #include "Projectile.h"
-
+#include "Game.h"
 
 Projectile::Projectile(float x, float y, float rad, int lifeTime, float speed, float size){
     this->x = x;
@@ -14,11 +14,11 @@ Projectile::~Projectile(){
 
 }
 
-void Projectile::updatep(int delta){
+void Projectile::update(int delta){
     lifeTime -= delta;
 
     if (lifeTime < -100)
-        delete this;
+        removeProjectile();
     //now move the projectile, then check for collisions
     x +=  speed * delta * cos(dir);
     y +=  speed * delta * sin(dir);
@@ -46,8 +46,5 @@ void Projectile::draw(){
 
 void Projectile::removeProjectile(){
     //just send to the nether
-    this->x = 666;
-    this->y = 666;
-    this->dir = 0;
-    this->speed = 0;
+    gm->removeGP(this);
 }

@@ -44,7 +44,7 @@ void Game::update(int delta){
     if (hero->right){
        hero->moveR();
     }
-
+    /*
     for(int i = 0; i < heroBullets.size(); i++)
         if( heroBullets[i]->lifeTime > 0)
             heroBullets[i]->updatep(delta);
@@ -52,7 +52,7 @@ void Game::update(int delta){
             heroBullets[i]->removeProjectile();
             heroBullets.erase(heroBullets.begin()+i);
         }
-        
+    */
     for(int i = 0; i < gp.size(); i++)
         gp[i]->update(delta);
     
@@ -63,8 +63,8 @@ void Game::draw(){
     //  Calls draw function from every gamepiece
     for(int i = 0; i < gp.size(); i++)
         gp[i]->draw();
-    for(int i = 0; i < heroBullets.size(); i++)
-        heroBullets[i]->draw();
+    //for(int i = 0; i < heroBullets.size(); i++)
+    //    heroBullets[i]->draw();
 }
 
 Player* Game::getPlayerObject(){
@@ -78,6 +78,18 @@ void Game::addGP(Gamepiece* gamepiece){
     this->gp.push_back(gamepiece);
 }
 
-void Game::addheroBullet(Projectile* bullet){
-    this->heroBullets.push_back(bullet);
+void Game::removeGP(Gamepiece* toErase){
+    std::cout << gp.size() << std::endl;
+    for(int i = 0; i < gp.size(); i++){
+        if (toErase == gp[i]){
+            gp.erase(gp.begin() + i);
+            std::cout << gp.size() << std::endl;
+        }
+    }
+
+    //delete toErase;
 }
+
+// void Game::addheroBullet(Projectile* bullet){
+//     //this->heroBullets.push_back(bullet);
+// }
