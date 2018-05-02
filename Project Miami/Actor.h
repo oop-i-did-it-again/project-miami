@@ -1,7 +1,9 @@
 #ifndef Actor_hpp
 #define Actor_hpp
 #include "Entity.h"
+#include "Gun.h"
 #include "Projectile.h"
+
 #define DIAG_VSPEED  0.70710678118; 
 
 
@@ -14,7 +16,7 @@ public:
     float vy;
     float speed;
     int health;
-    weapon gun = pistol;
+    Gun gun;
 	
     Actor();
     ~Actor();
@@ -22,8 +24,7 @@ public:
     virtual void init();
     //virtual void update(int delta);
 	
-	void shoot(float,float,float,float,bulletType);
-	void changeWeapon(weapon);
+
     
 
 };

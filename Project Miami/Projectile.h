@@ -3,7 +3,8 @@
 #include "Entity.h"
 
 enum bulletType { heroBullet, baddyBullet, notABullet };
-enum weapon { pistol, shotgun, mini };
+enum weaponType { pistol, shotgun, mini };
+
 
 class Projectile: public Entity{
 private:
@@ -12,12 +13,12 @@ public:
     int lifeTime;
     float speed;
     float dir;
-    Projectile(float x, float y, float rad, int lifeTime, float speed,float size, bulletType, weapon);
+    Projectile(float x, float y, float rad, int lifeTime, float speed,float size, bulletType, weaponType);
     ~Projectile();
     void update(int delta);
     void draw();
     bulletType whoseBullet = notABullet;
-    weapon projectileType;
+    weaponType projectileType;
     
     void removeProjectile();
 };

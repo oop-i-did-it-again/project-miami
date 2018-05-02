@@ -59,7 +59,7 @@ void App::mouseDown(float x, float y){
     
     Player *p = game->getPlayerObject();
     
-	p->shoot(y,x,p->y,p->x,heroBullet);
+	p->gun.shoot(y,x,p->y,p->x,heroBullet);
 cout << p->health << endl; 
 
     // Redraw the scene
@@ -109,9 +109,9 @@ void App::keyPress(unsigned char key) {
     if (key == 'd' )
         p->right=true;
 	if (key == '1' )
-		p->changeWeapon(pistol);
+		p->gun.changeWeapon(pistol);
     if (key == '3' )
-        p->changeWeapon(shotgun);
+        p->gun.changeWeapon(shotgun);
 
 }
 

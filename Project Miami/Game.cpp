@@ -36,9 +36,9 @@ void Game::init(){
         int r2 = rand() % 3 +1;
         
         if(r2 == 3)
-            players[i]->changeWeapon(shotgun);
+            players[i]->gun.changeWeapon(shotgun);
         else
-             players[i]->changeWeapon(pistol);
+             players[i]->gun.changeWeapon(pistol);
 	}
 	
 	for(int i = 0; i <=80; i+=1){
@@ -71,47 +71,6 @@ void Game::update(int delta){
             int r3 = rand() % 1-1;
 			if (random == 0){
 				bad->moveU();
-                bad->moveU();
-                bad->moveU();
-                bad->moveU();
-                bad->moveU();
-                bad->moveU();
-                				bad->moveU();
-                bad->moveU();
-                bad->moveU();
-                bad->moveU();
-                bad->moveU();
-                bad->moveU();
-                				bad->moveU();
-                bad->moveU();
-                bad->moveU();
-                bad->moveU();
-                bad->moveU();
-                bad->moveU();
-                				bad->moveU();
-                bad->moveU();
-                bad->moveU();
-                bad->moveU();
-                bad->moveU();
-                bad->moveU();
-                				bad->moveU();
-                bad->moveU();
-                bad->moveU();
-                bad->moveU();
-                bad->moveU();
-                bad->moveU();
-                				bad->moveU();
-                bad->moveU();
-                bad->moveU();
-                bad->moveU();
-                bad->moveU();
-                bad->moveU();
-                				bad->moveU();
-                bad->moveU();
-                bad->moveU();
-                bad->moveU();
-                bad->moveU();
-                bad->moveU();
             }
 			if (random == 1 )
 				bad->moveD();
@@ -120,7 +79,7 @@ void Game::update(int delta){
 			if (random == 3 )
 				bad->moveR();
             if (random == 17 )
-                bad->shoot(hero->y,hero->x,bad->y,bad->x, baddyBullet);
+                bad->gun.shoot(hero->y,hero->x,bad->y,bad->x, baddyBullet);
 		}
 	}
 	
