@@ -160,6 +160,8 @@ void Game::addGP(Gamepiece* gamepiece){
     this->gp.push_back(gamepiece);
 }
 
+// DO NOT CALL - GamePieces already calls this in its deconstructor
+// use delete instead
 void Game::removeGP(Gamepiece* toErase){
    // std::cout << gp.size() << std::endl;
     for(int i = 0; i < gp.size(); i++){
@@ -189,7 +191,7 @@ void Game::checkCollisions(){
 
 				if(gp[j]->type == bullet){
                     if(gp[i]->type == environment){
-                       removeGP(gp[j]);
+                       delete gp[j];
                     }
                 }
                 
@@ -205,10 +207,10 @@ void Game::checkCollisions(){
                                       if(b->projectileType == pistol)
                                             p->health-=50;                                  
                                 if(p->health <=0)
-                                    removeGP(gp[i]);
+                                    delete gp[i];
                             }
                             if(gp[i]->type != bullet){
-                                removeGP(gp[j]);
+                                delete gp[j];
                             }
                         }
 					}
@@ -225,7 +227,7 @@ void Game::checkCollisions(){
                                       if(b->projectileType == pistol)
                                             p->health-=50;               
                             if(gp[i]->type != bullet){
-                                removeGP(gp[j]);
+                                delete gp[j];
                             }
                         }
 					}
