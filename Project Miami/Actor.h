@@ -18,8 +18,6 @@ public:
 	
     Actor();
     ~Actor();
-    
-    virtual void init();
     //virtual void update(int delta);
 	
 	void shoot(float,float,float,float,bulletType);

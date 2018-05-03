@@ -14,14 +14,18 @@ Projectile::Projectile(float x, float y, float rad, int lifeTime, float speed, f
 }
 
 Projectile::~Projectile(){
-
+    //    std::cout << "deleted" << std::endl;
 }
 
 void Projectile::update(int delta){
     lifeTime -= delta;
 
-    if (lifeTime < -100)
-        removeProjectile();
+
+        //removeProjectile();
+    if (lifeTime < -0){
+        delete this;
+        return;
+    }
     //now move the projectile, then check for collisions
     x +=  speed * delta * cos(dir);
     y +=  speed * delta * sin(dir);

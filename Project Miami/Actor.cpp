@@ -1,18 +1,13 @@
 #include "Actor.h"
 
 Actor::Actor(){
-    init();
-}
-
-Actor::~Actor(){
-
-}
-
-void Actor::init(){
     vx = 0.0;
     vy = 0.0;
     health = 100;
     speed = 0.001;
+}
+
+Actor::~Actor(){
 }
 
 void Actor::shoot(float y1, float x1, float y2, float x2,bulletType a){

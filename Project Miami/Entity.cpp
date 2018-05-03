@@ -24,7 +24,6 @@ Entity::Entity(bool c){
 }
 
 Entity::~Entity(){
-
 }
 
 void Entity::draw(){

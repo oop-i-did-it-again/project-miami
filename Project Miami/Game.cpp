@@ -168,8 +168,6 @@ void Game::removeGP(Gamepiece* toErase){
             //std::cout << gp.size() << std::endl;
         }
     }
-
-    //delete toErase;
 }
 
 void Game::checkCollisions(){
