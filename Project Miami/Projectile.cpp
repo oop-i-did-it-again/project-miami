@@ -1,16 +1,17 @@
 #include "Projectile.h"
 #include "Game.h"
 
+<<<<<<< HEAD
 Projectile::Projectile(float x, float y, float rad, int lifeTime, float speed, float size, bulletType a, weaponType b){
+=======
+Projectile::Projectile(float x, float y, float rad, int lifeTime, float speed, float size){
+>>>>>>> parent of 9700525... bots and wall fixes and other good stuff
     this->x = x;
     this->y = y;
     this->radius = size;
     this->dir = rad;
     this->lifeTime = lifeTime;
     this->speed = speed;
-	this->type = bullet;
-    this->whoseBullet = a;
-    this->projectileType = b;
 }
 
 Projectile::~Projectile(){

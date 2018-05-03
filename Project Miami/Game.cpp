@@ -1,7 +1,6 @@
 #include "Game.h"
-#include <stdio.h>
-Game* Game::instance = 0;
 
+Game* Game::instance = 0;
 
 Game* Game::getGame(){
     if(instance == 0){
@@ -13,7 +12,6 @@ Game* Game::getGame(){
 
 Game::Game(){
     Gamepiece::setGM(this);
-    srand (time(NULL));
     init();
 }
 
@@ -23,6 +21,7 @@ void Game::init(){
     // initializes every gamepiece
     // may not be necessary if we gamepieces calls their own inits
     // from their constructors. we shall see
+<<<<<<< HEAD
     
 	Player* Hero = new Player();
 	Hero->type = hero;
@@ -53,13 +52,17 @@ void Game::init(){
 	}
 
 
+=======
+    Player* p = new Player();
+    Player* p2 = new Player();
+>>>>>>> parent of 9700525... bots and wall fixes and other good stuff
 }
 
 void Game::update(int delta){
     // Calls update function from every gamepiece
     // delta is milliseconds elapsed since last frame
-	
     Player* hero = dynamic_cast<Player*>(gp[0]);
+<<<<<<< HEAD
 	
 	//baddy movement
 	//srand (time(NULL));
@@ -87,25 +90,44 @@ void Game::update(int delta){
 
 	//hero movements
     if (hero->up )
+=======
+    Player* example = dynamic_cast<Player*>(gp[1]);
+    example->moveL();
+    
+    if (hero->up){
+>>>>>>> parent of 9700525... bots and wall fixes and other good stuff
         hero->moveU();
-    if (hero->down )
+    }
+    if (hero->down){
        hero->moveD();
-    if (hero->left )
+    }
+    if (hero->left){
         hero->moveL();
-    if (hero->right )
+    }
+    if (hero->right){
        hero->moveR();
-
-	//update every gamepiece
+    }
+    /*
+    for(int i = 0; i < heroBullets.size(); i++)
+        if( heroBullets[i]->lifeTime > 0)
+            heroBullets[i]->updatep(delta);
+        else{
+            heroBullets[i]->removeProjectile();
+            heroBullets.erase(heroBullets.begin()+i);
+        }
+    */
     for(int i = 0; i < gp.size(); i++)
         gp[i]->update(delta);
     
+
 }
 
 void Game::draw(){
     //  Calls draw function from every gamepiece
     for(int i = 0; i < gp.size(); i++)
         gp[i]->draw();
-
+    //for(int i = 0; i < heroBullets.size(); i++)
+    //    heroBullets[i]->draw();
 }
 
 Player* Game::getPlayerObject(){
@@ -120,90 +142,17 @@ void Game::addGP(Gamepiece* gamepiece){
 }
 
 void Game::removeGP(Gamepiece* toErase){
-   // std::cout << gp.size() << std::endl;
+    std::cout << gp.size() << std::endl;
     for(int i = 0; i < gp.size(); i++){
         if (toErase == gp[i]){
             gp.erase(gp.begin() + i);
-            //std::cout << gp.size() << std::endl;
+            std::cout << gp.size() << std::endl;
         }
     }
 
     //delete toErase;
 }
 
-void Game::checkCollisions(){
-    for(int i = 0; i < gp.size(); i++){
-		for(int j = i+1; j <gp.size(); j++){
-			
-
-				
-
-				
-							
-			if(collides(gp[i], gp[j])){
-				if(gp[j]->type == environment && gp[i]->type != environment){
-					gp[i]->x=gp[i]->px;
-					gp[i]->y=gp[i]->py;						
-				}
-				
-				
-
-				if(gp[j]->type == bullet){
-                    if(gp[i]->type == environment){
-                       removeGP(gp[j]);
-                    }
-                }
-                
-                
-				if(i != 0){
-					if(gp[j]->type == bullet){
-                         Projectile* b = dynamic_cast<Projectile*>(gp[j]);
-                        if(b->whoseBullet == heroBullet){
-                            if(gp[i]->type == baddy){
-                                Player* p = dynamic_cast<Player*>(gp[i]);
-                                    if(b->projectileType == shotgun)
-                                            p->health-=33.4;
-                                      if(b->projectileType == pistol)
-                                            p->health-=50;                                  
-                                if(p->health <=0)
-                                    removeGP(gp[i]);
-                            }
-                            if(gp[i]->type != bullet){
-                                removeGP(gp[j]);
-                            }
-                        }
-					}
-				}
-				
-				
-            				if(i == 0){
-					if(gp[j]->type == bullet){
-                         Projectile* b = dynamic_cast<Projectile*>(gp[j]);
-                        if(b->whoseBullet == baddyBullet){
-                               Player* p = dynamic_cast<Player*>(gp[0]);
-                                    if(b->projectileType == shotgun)
-                                            p->health-=33.4;
-                                      if(b->projectileType == pistol)
-                                            p->health-=50;               
-                            if(gp[i]->type != bullet){
-                                removeGP(gp[j]);
-                            }
-                        }
-					}
-				}
-			}
-			
-			
-			
-			
-		}
-	}
- }
- 
-
- bool Game::collides(Gamepiece* a, Gamepiece* b){
-	double D = sqrt( pow(a->x - b->x,2.0)+pow(a->y - b->y,2.0));
-
-	return (D<.09);
-
- }
+// void Game::addheroBullet(Projectile* bullet){
+//     //this->heroBullets.push_back(bullet);
+// }

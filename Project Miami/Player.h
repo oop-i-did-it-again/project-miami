@@ -23,10 +23,6 @@ class Player: public Actor{
         bool down = false;
         bool left = false;
         bool right = false;
-		
-		
-
-
 };
 
 #endif

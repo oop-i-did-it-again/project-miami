@@ -7,9 +7,6 @@
  *  We use circle hitboxes because they're FAAAAAST
  * 
  */
- 
-
-
 class Entity: public Gamepiece{
 private:
 public:
@@ -23,11 +20,10 @@ public:
     bool isCircle = true;
     float radius;
     float length;
-    float height;
+    float width;
     float r;
     float g;
     float b;
-
 };
 
 #endif
