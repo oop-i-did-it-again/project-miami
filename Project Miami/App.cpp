@@ -13,7 +13,7 @@ App::App(const char* label, int x, int y, int w, int h): GlutApp(label, x, y, w,
     delta = 0.0;
 	playing = false;
     game = Game::getGame();
-    
+    startMenu = new StartMenu();
 }
 
 void App::idle(){
@@ -29,6 +29,8 @@ void App::idle(){
         lastT = t;
 		if(playing)
 			game->update(delta);
+		else
+			startMenu->draw();
         redraw();
     }
 

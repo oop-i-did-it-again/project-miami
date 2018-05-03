@@ -16,6 +16,7 @@ class App: public GlutApp {
 	bool playing;
     timespec ts;
     Game* game; // gamemanager, handles all game logic
+	StartMenu* startMenu;
 public:
     // Constructor, to initialize state
     App(const char* label, int x, int y, int w, int h);
