@@ -14,7 +14,8 @@ Gamepiece::Gamepiece(){
 }
 
 Gamepiece::~Gamepiece(){
-
+    gm->removeGP(this);
+            // std::cout << "deleted Gamepiece" << std::endl;
 }
 
 void Gamepiece::init(){

@@ -6,7 +6,6 @@ Player::Player(){
 }
 
 Player::~Player(){
-
 }
 
 void Player::update(int delta){
