@@ -10,7 +10,8 @@ Player::~Player(){
 
 void Player::update(int delta){
     normalize();
-    
+    px=x;
+    py=y;
     x += delta * vx * speed;
     y += delta * vy * speed;
 

@@ -27,7 +27,7 @@ void Game::init(){
 	Player* Hero = new Player();
 	Hero->type = hero;
 	background = new TexRect("gameboard.bmp",1,1,-1,1,2,2);
-	std::vector<Entity*> walls;
+	std::vector<Wall*> walls;
 	std::vector<Player*> players;
 	
 	for(int i = 0; i <10; i+=1){
@@ -41,9 +41,9 @@ void Game::init(){
              players[i]->changeWeapon(pistol);
 	}
 	
-	for(int i = 0; i <=80; i+=1){
-        Entity* wall = new Entity(false);
-        wall->x = -1+double(i)/40;
+	for(int i = 0; i <=150; i+=1){
+        Wall* wall = new Wall();
+        wall->x = -1+double(i)/75;
 		wall->y = .8;
         
 		wall->type = environment;
@@ -71,47 +71,7 @@ void Game::update(int delta){
             int r3 = rand() % 1-1;
 			if (random == 0){
 				bad->moveU();
-                bad->moveU();
-                bad->moveU();
-                bad->moveU();
-                bad->moveU();
-                bad->moveU();
-                				bad->moveU();
-                bad->moveU();
-                bad->moveU();
-                bad->moveU();
-                bad->moveU();
-                bad->moveU();
-                				bad->moveU();
-                bad->moveU();
-                bad->moveU();
-                bad->moveU();
-                bad->moveU();
-                bad->moveU();
-                				bad->moveU();
-                bad->moveU();
-                bad->moveU();
-                bad->moveU();
-                bad->moveU();
-                bad->moveU();
-                				bad->moveU();
-                bad->moveU();
-                bad->moveU();
-                bad->moveU();
-                bad->moveU();
-                bad->moveU();
-                				bad->moveU();
-                bad->moveU();
-                bad->moveU();
-                bad->moveU();
-                bad->moveU();
-                bad->moveU();
-                				bad->moveU();
-                bad->moveU();
-                bad->moveU();
-                bad->moveU();
-                bad->moveU();
-                bad->moveU();
+
             }
 			if (random == 1 )
 				bad->moveD();
@@ -243,8 +203,11 @@ void Game::checkCollisions(){
  
 
  bool Game::collides(Gamepiece* a, Gamepiece* b){
+     
 	double D = sqrt( pow(a->x - b->x,2.0)+pow(a->y - b->y,2.0));
+    Entity* c = dynamic_cast<Entity*>(a);
+    Entity* d = dynamic_cast<Entity*>(b);
 
-	return (D<.09);
+	return (D< c->radius+d->radius);
 
  }

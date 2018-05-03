@@ -15,12 +15,11 @@ private:
 public:
 
     Entity();
-    Entity(bool);
     ~Entity();
     virtual void draw();
     
     //TexRect* texture;
-    bool isCircle = true;
+
     float radius;
     float length;
     float height;

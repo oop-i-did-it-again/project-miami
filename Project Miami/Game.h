@@ -4,6 +4,7 @@
 #include "Gamepiece.h"
 #include "Player.h"
 #include "TexRect.h"
+#include "Wall.h"
 #include <vector>
 #include <iostream>
 
