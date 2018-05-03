@@ -11,7 +11,7 @@ App::App(const char* label, int x, int y, int w, int h): GlutApp(label, x, y, w,
     t = 0;
     lastT = 0;
     delta = 0.0;
-
+	playing = false;
     game = Game::getGame();
     
 }
@@ -27,7 +27,8 @@ void App::idle(){
         //cout << "FPS: " << 1000/delta << endl; 
 
         lastT = t;
-        game->update(delta);
+		if(playing)
+			game->update(delta);
         redraw();
     }
 
@@ -44,7 +45,8 @@ void App::draw() {
     glLoadIdentity();
 
     //Draw gamepieces
-    game->draw();
+	if(playing)
+		game->draw();
 
     // We have been drawing everything to the back buffer
     // Swap the buffers to see the result of what we drew
@@ -56,11 +58,11 @@ void App::mouseDown(float x, float y){
     // Update app state
     mx = x;
     my = y;
-    
-    Player *p = game->getPlayerObject();
-    
-	p->shoot(y,x,p->y,p->x,heroBullet);
-cout << p->health << endl; 
+    if(playing){
+		Player *p = game->getPlayerObject();
+		p->shoot(y,x,p->y,p->x,heroBullet);
+		cout << p->health << endl;
+	}
 
     // Redraw the scene
     redraw();
@@ -76,7 +78,8 @@ void App::mouseDrag(float x, float y){
 }
 
 void App::keyLift(unsigned char key) {
-   
+	if(!playing)
+		return;
     Player *p = game->getPlayerObject();
 
  
@@ -93,6 +96,10 @@ void App::keyLift(unsigned char key) {
 }
 
 void App::keyPress(unsigned char key) {
+	if(key == 'j')
+		playing = true;
+	if(!playing)
+		return;
     Player *p = game->getPlayerObject();
 
  
@@ -114,4 +121,3 @@ void App::keyPress(unsigned char key) {
         p->changeWeapon(shotgun);
 
 }
-

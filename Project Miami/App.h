@@ -2,6 +2,7 @@
 #define App_hpp
 #include "GlutApp.h"
 #include "Game.h"
+#include "StartMenu.h"
 #include "time.h"
 
 class App: public GlutApp {
@@ -12,7 +13,7 @@ class App: public GlutApp {
     int lastT;
     double delta;
     const double TARGET_FPS = 62.0;
-
+	bool playing;
     timespec ts;
     Game* game; // gamemanager, handles all game logic
 public:
