@@ -22,15 +22,17 @@ void Projectile::update(int delta){
 
 
         //removeProjectile();
+    if (lifeTime < -0){
+        delete this;
+        return;
+    }
     //now move the projectile, then check for collisions
     x +=  speed * delta * cos(dir);
     y +=  speed * delta * sin(dir);
      
     draw();
     
-    if (lifeTime < -100){
-        delete this;
-    }
+
 }
 
 void Projectile::draw(){
