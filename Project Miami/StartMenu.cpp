@@ -6,10 +6,9 @@ StartMenu::StartMenu(){
 }
 
 void StartMenu::init(){
-    background = new TexRect("retro-title.bmp",1,1,0,0,1,1);
+    background = new TexRect("retro.bmp",1,1,-1,1,2,2);
 }
 
 void StartMenu::draw(){
-	std::cout<<"CALLED\n";
 	background->draw();
 }

@@ -29,8 +29,6 @@ void App::idle(){
         lastT = t;
 		if(playing)
 			game->update(delta);
-		else
-			startMenu->draw();
         redraw();
     }
 
@@ -49,7 +47,8 @@ void App::draw() {
     //Draw gamepieces
 	if(playing)
 		game->draw();
-
+	else
+		startMenu->draw();
     // We have been drawing everything to the back buffer
     // Swap the buffers to see the result of what we drew
     glFlush();

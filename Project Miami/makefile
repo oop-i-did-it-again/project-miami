@@ -16,7 +16,7 @@ CFLAGS   = -w $(OPTFLAGS)
 ifeq ($(strip $(OS)),Darwin)
 	LDFLAGS = -framework GLUT -framework OpenGL
 else
-	LDFLAGS = -lGL -lglut
+	LDFLAGS = -lGL -lglut -lGLU
 endif
 
 #######################################################################
