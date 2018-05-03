@@ -3,6 +3,7 @@
 #include "Projectile.h"
 #include "Gamepiece.h"
 #include "Player.h"
+#include "TexRect.h"
 #include <vector>
 #include <iostream>
 
@@ -14,10 +15,10 @@ class Game{
     static Game *instance;
     Game();
 public:
-    
+    TexRect* background;
     static Game* getGame();
     ~Game();
-
+	
     void init();
     void update(int delta); // called every frame, handle game logic here
     void draw(); // called every frame, render stuff here

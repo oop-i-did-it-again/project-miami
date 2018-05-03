@@ -26,7 +26,7 @@ void Game::init(){
     
 	Player* Hero = new Player();
 	Hero->type = hero;
-	
+	background = new TexRect("gameboard.bmp",1,1,-1,1,2,2);
 	std::vector<Entity*> walls;
 	std::vector<Player*> players;
 	
@@ -146,7 +146,7 @@ void Game::draw(){
     //  Calls draw function from every gamepiece
     for(int i = 0; i < gp.size(); i++)
         gp[i]->draw();
-
+	background->draw();
 }
 
 Player* Game::getPlayerObject(){
