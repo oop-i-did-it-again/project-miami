@@ -30,7 +30,7 @@ void StartMenu::draw(){
 }
 
 void StartMenu::checkKey(unsigned char key){
-	if(key == 's' && quality<3)
+	if(key == 's' && quality<4)
 		quality++;
 	if(key == 'w' && quality>0)
 		quality--;
