@@ -27,8 +27,6 @@ class Player: public Actor{
         bool down = false;
         bool left = false;
         bool right = false;
-		TexRect* playerModel;
-		void draw();
 		void shoot(float,float,float,float,bulletType);
 
 

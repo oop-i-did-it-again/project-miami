@@ -1,13 +1,11 @@
-#ifndef StartMenu_hpp
-#define StartMenu_hpp
+#ifndef DeathMenu_hpp
+#define DeathMenu_hpp
 #include "TexRect.h"
 
-class StartMenu{
-	TexRect* background[4];
-	int quality;
+class DeathMenu{
 	public:
 		
-		StartMenu();
+		DeathMenu();
 		
 		void init();
 		void draw();

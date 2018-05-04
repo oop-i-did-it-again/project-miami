@@ -19,7 +19,7 @@ public:
     virtual void draw();
     
     //TexRect* texture;
-
+	TexRect* model;
     float radius;
     float length;
     float height;

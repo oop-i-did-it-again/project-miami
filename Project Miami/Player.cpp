@@ -4,10 +4,11 @@
 Player::Player(){
     //speed = .001;
     //radius = 10;
-	playerModel=new TexRect("assets/player.bmp",1,1,x-SIZE,y+SIZE,SIZE*2,SIZE*2);
+	model=new TexRect("assets/player.bmp",1,1,x-SIZE,y+SIZE,SIZE*2,SIZE*2);
 }
 
 Player::~Player(){
+	delete model;
 }
 
 void Player::update(int delta){
@@ -30,7 +31,7 @@ void Player::update(int delta){
     }
     vx = 0.0;
     vy = 0.0;
-	playerModel->changePos(x-SIZE,y+SIZE);
+	model->changePos(x-SIZE,y+SIZE);
 }
 
 void Player::moveL(){
@@ -97,8 +98,4 @@ void Player::normalize(){
 		changeWeapon(pistol);
     if (key == '3' )
         changeWeapon(shotgun);
- }
-
- void Player::draw(){
-	 playerModel->draw();
  }

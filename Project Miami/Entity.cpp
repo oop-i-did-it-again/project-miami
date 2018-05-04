@@ -14,7 +14,7 @@ Entity::~Entity(){
 
 void Entity::draw(){
     
-	if(this->type == hero){
+	/*if(this->type == hero){
 		glColor3d(0,1,1);
         glBegin(GL_POLYGON);
         for (double i = 0; i <2*3.141692;i+=3.151592/75)
@@ -31,8 +31,8 @@ void Entity::draw(){
         glEnd();
 		glColor3d(0,0,0);
 
-    }
-	
+    }*/
+	model->draw();
 
 
 

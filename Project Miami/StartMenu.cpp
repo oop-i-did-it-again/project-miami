@@ -14,12 +14,18 @@ void StartMenu::init(){
 }
 
 void StartMenu::draw(){
+	/*float y_rand = 0;
+	glColor3d(1,1,1);
+	for(int i=0;i<4;i++){
+		glBegin(GL_LINE);
+		y_rand = float(rand()%100)/1000;
+		y_rand=0;
+		glVertex2f(0,y_rand);
+		glVertex2f(.5,y_rand);
+		glEnd();
+		std::cout<<"WEE\n";
+	}*/
 	background[quality]->draw();
-	//glBegin(GL_LINE);
-}
-
-void StartMenu::changeQuality(int q){
-	quality = q;
 }
 
 void StartMenu::checkKey(unsigned char key){
