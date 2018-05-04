@@ -3,7 +3,7 @@
 #include "TexRect.h"
 
 class StartMenu{
-	TexRect* background[4];
+	TexRect* background[5];
 	int quality;
 	public:
 		
