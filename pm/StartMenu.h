@@ -11,6 +11,7 @@ class StartMenu{
 		
 		void init();
 		void draw();
+		void update();
 		void checkKey(unsigned char key);
 
 };

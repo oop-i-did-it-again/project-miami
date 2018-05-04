@@ -39,3 +39,9 @@ void StartMenu::checkKey(unsigned char key){
 	if(key == 'w' && quality>0)
 		quality--;
 }
+
+void StartMenu::update(){
+	quality++;
+	if(quality > 4)
+		quality = 0;
+}

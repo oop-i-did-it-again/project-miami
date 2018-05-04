@@ -29,6 +29,8 @@ void App::idle(){
         lastT = t;
 		if(playing)
 			game->update(delta);
+        else
+            startMenu->update();
         redraw();
     }
 
