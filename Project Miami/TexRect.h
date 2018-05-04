@@ -23,9 +23,9 @@ public:
     TexRect (const char*, int, int, float, float, float, float);
     
     void draw();
-    
+    void changePos(float, float);
     bool contains(float, float);
-    
+	
     float pos_x,pos_y;
     float sides;
 };

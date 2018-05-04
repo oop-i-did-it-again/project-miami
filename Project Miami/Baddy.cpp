@@ -1,11 +1,14 @@
 #include "Baddy.h"
+#define SIZE 0.06
 
 Baddy::Baddy(){
     //speed = .001;
     //radius = 10;
+	baddyModel = new TexRect("assets/baddy.bmp",1,1,x-SIZE,y+SIZE,SIZE*2,SIZE*2);
 }
 
 Baddy::~Baddy(){
+	delete baddyModel;
 }
 
 void Baddy::update(int delta){
@@ -28,6 +31,7 @@ void Baddy::update(int delta){
     }
     vx = 0.0;
     vy = 0.0;
+	baddyModel->changePos(x-SIZE,y+SIZE);
 }
 
 void Baddy::moveL(){
@@ -78,3 +82,7 @@ void Baddy::normalize(){
       }
       
   }
+
+void Baddy::draw(){
+	baddyModel->draw();
+}

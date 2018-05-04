@@ -9,7 +9,7 @@ class Player: public Actor{
         Player();
         ~Player();
         
-                int pistolClip =9;
+        int pistolClip =9;
         int shotgunClip =2;
 
         void update(int delta);
@@ -27,7 +27,8 @@ class Player: public Actor{
         bool down = false;
         bool left = false;
         bool right = false;
-		
+		TexRect* playerModel;
+		void draw();
 		void shoot(float,float,float,float,bulletType);
 
 

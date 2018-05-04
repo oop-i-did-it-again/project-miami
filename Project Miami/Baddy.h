@@ -21,11 +21,12 @@ class Baddy: public Actor{
         void moveDL();
         void moveDR();
         void normalize();
+		void draw();
         bool up = false;
         bool down = false;
         bool left = false;
         bool right = false;
-		
+		TexRect* baddyModel; 
         void shoot(float,float,float,float,bulletType);
 
 

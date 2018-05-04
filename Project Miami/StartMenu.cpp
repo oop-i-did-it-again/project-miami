@@ -23,8 +23,8 @@ void StartMenu::changeQuality(int q){
 }
 
 void StartMenu::checkKey(unsigned char key){
-	if(key == 'w' && quality<3)
+	if(key == 's' && quality<3)
 		quality++;
-	if(key == 's' && quality>0)
+	if(key == 'w' && quality>0)
 		quality--;
 }
