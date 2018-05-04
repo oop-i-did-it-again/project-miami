@@ -26,6 +26,7 @@ TexRect::TexRect (const char* filename, int rows, int cols, float x=0, float y=0
 }
 
 void TexRect::draw(){
+	glColor3d(1,1,1);
     glBindTexture( GL_TEXTURE_2D, texture_id );
     glEnable(GL_TEXTURE_2D);
     glTexEnvf(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_MODULATE);

@@ -47,7 +47,7 @@ void Projectile::draw(){
 	glEnd();
 
 
-     glColor3d(1,1,1);
+    glColor3d(1,1,1);
 
 }
 

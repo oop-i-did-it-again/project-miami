@@ -99,7 +99,6 @@ void Game::update(int delta){
 	//update every gamepiece
     for(int i = 0; i < gp.size(); i++)
         gp[i]->update(delta);
-    
 }
 
 void Game::draw(){
