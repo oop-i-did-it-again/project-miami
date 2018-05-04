@@ -6,7 +6,7 @@ StartMenu::StartMenu(){
 }
 
 void StartMenu::init(){
-    background = new TexRect("work.bmp",1,1,-1,1,2,2);
+   
 }
 
 void StartMenu::draw(){

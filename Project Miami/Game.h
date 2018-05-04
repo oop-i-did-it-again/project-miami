@@ -16,7 +16,7 @@ class Game{
     static Game *instance;
     Game();
 public:
-    TexRect* background =  new TexRect("gameboard.bmp",1,1,-1,1,2,2);
+    TexRect* background =  new TexRect("assets/gameboard.bmp",1,1,-1,1,2,2);
     static Game* getGame();
     ~Game();
 	

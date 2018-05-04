@@ -3,7 +3,7 @@
 #include "TexRect.h"
 
 class StartMenu{
-	TexRect* background;
+	TexRect* background = new TexRect("assets/work.bmp",1,1,-1,1,2,2);;
 	public:
 		
 		StartMenu();

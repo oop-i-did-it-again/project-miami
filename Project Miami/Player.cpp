@@ -57,7 +57,6 @@ void Player::normalize(){
 
 
   void Player::shoot(float y1, float x1, float y2, float x2,bulletType a){
-      std::cout<<pistolClip<<std::endl;
       if (gun == shotgun){
            if(shotgunClip == -1)
                     shotgunClip =2;//reload
