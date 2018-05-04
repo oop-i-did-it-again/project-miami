@@ -54,3 +54,31 @@ void Player::normalize(){
     
 
 }
+
+
+  void Player::shoot(float y1, float x1, float y2, float x2,bulletType a){
+      std::cout<<pistolClip<<std::endl;
+      if (gun == shotgun){
+           if(shotgunClip == -1)
+                    shotgunClip =2;//reload
+          if(shotgunClip >0){
+                new Projectile(x2,y2, atan2(y1- y2,x1-x2), 250,.003, .01,a,gun);
+                new Projectile(x2,y2, atan2(y1- y2,x1-x2)+.05, 250,.003,.01,a,gun);
+                new Projectile(x2,y2, atan2(y1- y2,x1-x2)+.1, 250,.003,.01,a,gun);
+                new Projectile(x2,y2, atan2(y1- y2,x1-x2)-.05, 250,.003,.01,a,gun);
+                new Projectile(x2,y2, atan2(y1- y2,x1-x2)-.1, 250,.003,.01,a,gun);
+          }
+          shotgunClip--;
+    }
+
+      if (gun == pistol){
+           if(pistolClip == -1)
+                    pistolClip =9;//reload
+          if(pistolClip >0){
+                    new Projectile(x2,y2, atan2(y1- y2,x1-x2), 1250,.002,.02,a,gun);
+          }
+          pistolClip--;
+    }
+      
+  }
+

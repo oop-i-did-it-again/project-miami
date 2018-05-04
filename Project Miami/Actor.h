@@ -20,7 +20,7 @@ public:
     ~Actor();
     //virtual void update(int delta);
 	
-	void shoot(float,float,float,float,bulletType);
+	virtual void shoot(float,float,float,float,bulletType);
 	void changeWeapon(weapon);
     
 

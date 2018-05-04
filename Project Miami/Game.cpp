@@ -26,19 +26,19 @@ void Game::init(){
     
 	Player* Hero = new Player();
 	Hero->type = hero;
-	background = new TexRect("gameboard.bmp",1,1,-1,1,2,2);
 	std::vector<Wall*> walls;
-	std::vector<Player*> players;
+	std::vector<Baddy*> baddies;
 	
 	for(int i = 0; i <10; i+=1){
-		players.push_back(new Player());
-		players[i]->type = baddy;
+		baddies.push_back(new Baddy());
+		baddies[i]->type = baddy;
         int r2 = rand() % 3 +1;
-        
+        baddies[i]->x = rand() % 2-1;
+        baddies[i]->y = rand() % 2-1;
         if(r2 == 3)
-            players[i]->changeWeapon(shotgun);
+            baddies[i]->changeWeapon(shotgun);
         else
-             players[i]->changeWeapon(pistol);
+             baddies[i]->changeWeapon(pistol);
 	}
 	
 	for(int i = 0; i <=200; i+=1){
@@ -62,24 +62,40 @@ void Game::update(int delta){
     Player* hero = dynamic_cast<Player*>(gp[0]);
 	
 	//baddy movement
-	//srand (time(NULL));
+	srand (time(NULL));
 	for(int i = 0; i < gp.size(); i++){
 		if(gp[i]-> type == baddy){
-			Player* bad = dynamic_cast<Player*>(gp[i]);
+			Baddy* bad = dynamic_cast<Baddy*>(gp[i]);
 			int random = rand() % 20;
-            int r2 = rand() % 1-1;
-            int r3 = rand() % 1-1;
 			if (random == 0){
 				bad->moveU();
-
             }
-			if (random == 1 )
+			if (random == 1 ){
 				bad->moveD();
-			if (random == 2 )
+            }
+			if (random == 2 ){
 				bad->moveL();
-			if (random == 3 )
+            }
+			if (random == 3 ){
 				bad->moveR();
-            if (random == 17 )
+            }
+            if (random == 4){
+				bad->moveU();
+                bad->moveL();
+            }
+			if (random == 5 ){
+				bad->moveD();
+                bad->moveL();
+            }
+			if (random == 6){
+                bad->moveU();
+				bad->moveR();
+            }
+			if (random == 7 ){
+                bad->moveD();
+				bad->moveR();
+            }
+            if (random > 17 )
                 bad->shoot(hero->y,hero->x,bad->y,bad->x, baddyBullet);
 		}
 	}
@@ -132,26 +148,20 @@ void Game::removeGP(Gamepiece* toErase){
 }
 
 void Game::checkCollisions(){
+    
     for(int i = 0; i < gp.size(); i++){
 		for(int j = i+1; j <gp.size(); j++){
 
-            
-            
-        
 			if(collides(gp[i], gp[j])){
                 
                 //bullet hitting something
                 if(gp[j]->type == bullet){
-                    
-                    
-                    
                     
                     //bullet hitting wall
                     if(gp[i]->type == environment){
                        delete gp[j];
                        continue;
                     }
-                    
                     
                     //bullet hitting player
                     if(i==0){
@@ -169,12 +179,11 @@ void Game::checkCollisions(){
                         }
                     }
                     
-                    
                     //bullet hitting enemy
                      if(i!=0){
                         Projectile* b = dynamic_cast<Projectile*>(gp[j]);
                         if(b->whoseBullet == heroBullet){
-                            if(Player* p = dynamic_cast<Player*>(gp[i])){
+                            if(Baddy* p = dynamic_cast<Baddy*>(gp[i])){
                                 delete gp[j]; 
                                 if(b->projectileType == shotgun)
                                     p->health-=33.4;
@@ -186,11 +195,6 @@ void Game::checkCollisions(){
                             }
                         }                   
                     }
-                    
-                    
-                    
-                    
-
                 }
                 
                 //nonwall hitting wall
@@ -201,20 +205,7 @@ void Game::checkCollisions(){
                         continue;
                     }
 				}
-				
-								
-				
-
-                
-
-				
-				
-
 			}
-			
-			
-			
-			
 		}
 	}
  }

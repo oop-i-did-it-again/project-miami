@@ -8,6 +8,9 @@ class Player: public Actor{
     public:
         Player();
         ~Player();
+        
+                int pistolClip =9;
+        int shotgunClip =2;
 
         void update(int delta);
         void moveL();
@@ -24,7 +27,7 @@ class Player: public Actor{
         bool left = false;
         bool right = false;
 		
-		
+		void shoot(float,float,float,float,bulletType);
 
 
 };
