@@ -81,3 +81,17 @@ void Player::normalize(){
       
   }
 
+ void Player::checkKey(unsigned char key, bool state){
+	 if (key == 'w')
+        up = state;
+    if (key == 'a' )
+        left = state;
+    if (key == 's' )
+        down = state;
+    if (key == 'd' )
+        right=state;
+	if (key == '1' )
+		changeWeapon(pistol);
+    if (key == '3' )
+        changeWeapon(shotgun);
+ }

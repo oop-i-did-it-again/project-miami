@@ -82,43 +82,18 @@ void App::keyLift(unsigned char key) {
 	if(!playing)
 		return;
     Player *p = game->getPlayerObject();
-
- 
-    if (key == 'w')
-        p->up = false;
-    if (key == 'a' )
-        p->left = false;
-    if (key == 's' )
-        p->down = false;
-    if (key == 'd' )
-        p->right=false;
-
-    
+	p->checkKey(key,false);
 }
 
 void App::keyPress(unsigned char key) {
-	if(key == 'j')
-		playing = true;
-	if(!playing)
-		return;
-    Player *p = game->getPlayerObject();
-
- 
-    
-
 	if (key == 27)
 		exit(0);
-    if (key == 'w')
-        p->up = true;
-    if (key == 'a' )
-        p->left = true;
-    if (key == 's' )
-        p->down = true;
-    if (key == 'd' )
-        p->right=true;
-	if (key == '1' )
-		p->changeWeapon(pistol);
-    if (key == '3' )
-        p->changeWeapon(shotgun);
-
+	if(key == 'j')
+		playing = true;
+	if(!playing){
+		startMenu->checkKey(key);
+		return;
+	}
+    Player *p = game->getPlayerObject();
+	p->checkKey(key,true);
 }

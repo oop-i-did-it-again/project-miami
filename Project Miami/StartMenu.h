@@ -3,16 +3,16 @@
 #include "TexRect.h"
 
 class StartMenu{
-	TexRect* background = new TexRect("assets/work.bmp",1,1,-1,1,2,2);;
+	TexRect* background[4];
+	int quality;
 	public:
 		
 		StartMenu();
 		
 		void init();
 		void draw();
-		/*void checkButton();
-		void drawMenu();*/
-    
+		void changeQuality(int q);
+		void checkKey(unsigned char key);
 
 };
 

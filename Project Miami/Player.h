@@ -22,6 +22,7 @@ class Player: public Actor{
         void moveDL();
         void moveDR();
         void normalize();
+		void checkKey(unsigned char key, bool state);
         bool up = false;
         bool down = false;
         bool left = false;
