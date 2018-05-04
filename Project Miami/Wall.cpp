@@ -9,8 +9,8 @@ Wall::Wall( ){
 
     
     radius = .05;
-    length = .08;
-    height = .08;        
+    length = .1;
+    height = .1;        
     
 }
 

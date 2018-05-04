@@ -41,9 +41,9 @@ void Game::init(){
              players[i]->changeWeapon(pistol);
 	}
 	
-	for(int i = 0; i <=150; i+=1){
+	for(int i = 0; i <=200; i+=1){
         Wall* wall = new Wall();
-        wall->x = -1+double(i)/75;
+        wall->x = -1+double(i)/100;
 		wall->y = .8;
         
 		wall->type = environment;
@@ -135,63 +135,82 @@ void Game::removeGP(Gamepiece* toErase){
 void Game::checkCollisions(){
     for(int i = 0; i < gp.size(); i++){
 		for(int j = i+1; j <gp.size(); j++){
-			
 
-				
-
-				
-							
+            
+            
+        
 			if(collides(gp[i], gp[j])){
-				if(gp[j]->type == environment && gp[i]->type != environment){
-					gp[i]->x=gp[i]->px;
-					gp[i]->y=gp[i]->py;						
-				}
-				
-				
-
-				if(gp[j]->type == bullet){
+                
+                //bullet hitting something
+                if(gp[j]->type == bullet){
+                    
+                    
+                    
+                    
+                    //bullet hitting wall
                     if(gp[i]->type == environment){
                        delete gp[j];
+                       continue;
                     }
-                }
-                
-                
-				if(i != 0){
-					if(gp[j]->type == bullet){
-                         Projectile* b = dynamic_cast<Projectile*>(gp[j]);
+                    
+                    
+                    //bullet hitting player
+                    if(i==0){
+                        Projectile* b = dynamic_cast<Projectile*>(gp[j]);
+                        if(b->whoseBullet == baddyBullet){
+                            Player* p = dynamic_cast<Player*>(gp[i]);
+                            if(b->projectileType == shotgun)
+                                p->health-=33.4;
+                            if(b->projectileType == pistol)
+                                p->health-=50;     
+                            if(p->health <=0)
+                                std::cout<<"player dead"<<std::endl;
+                            delete gp[j]; 
+                            continue;
+                        }
+                    }
+                    
+                    
+                    //bullet hitting enemy
+                     if(i!=0){
+                        Projectile* b = dynamic_cast<Projectile*>(gp[j]);
                         if(b->whoseBullet == heroBullet){
-                            if(gp[i]->type == baddy){
-                                Player* p = dynamic_cast<Player*>(gp[i]);
-                                    if(b->projectileType == shotgun)
-                                            p->health-=33.4;
-                                      if(b->projectileType == pistol)
-                                            p->health-=50;                                  
+                            if(Player* p = dynamic_cast<Player*>(gp[i])){
+                                delete gp[j]; 
+                                if(b->projectileType == shotgun)
+                                    p->health-=33.4;
+                                if(b->projectileType == pistol)
+                                    p->health-=50;     
                                 if(p->health <=0)
                                     delete gp[i];
+                            continue;
                             }
-                            if(gp[i]->type != bullet){
-                                delete gp[j];
-                            }
-                        }
-					}
+                        }                   
+                    }
+                    
+                    
+                    
+                    
+
+                }
+                
+                //nonwall hitting wall
+				if(gp[j]->type == environment){
+                    if(gp[i]->type != environment){
+                        gp[i]->x=gp[i]->px;
+                        gp[i]->y=gp[i]->py;	
+                        continue;
+                    }
 				}
 				
+								
 				
-            				if(i == 0){
-					if(gp[j]->type == bullet){
-                         Projectile* b = dynamic_cast<Projectile*>(gp[j]);
-                        if(b->whoseBullet == baddyBullet){
-                               Player* p = dynamic_cast<Player*>(gp[0]);
-                                    if(b->projectileType == shotgun)
-                                            p->health-=33.4;
-                                      if(b->projectileType == pistol)
-                                            p->health-=50;               
-                            if(gp[i]->type != bullet){
-                                delete gp[j];
-                            }
-                        }
-					}
-				}
+
+                
+
+				
+				
+
 			}
 			
 			
