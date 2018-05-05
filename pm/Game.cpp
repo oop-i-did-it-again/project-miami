@@ -26,7 +26,6 @@ void Game::init(){
     
 	Player* Hero = new Player();
 	Hero->type = hero;
-    Hero->GetGame(this);
 	std::vector<Wall*> walls;
 	std::vector<Baddy*> baddies;
 	
@@ -250,4 +249,8 @@ void Game::checkDoorCollisions(){
 
 	return (D< c->radius+d->radius);
 
+ }
+
+ void Game::checkKey(unsigned char key){
+	 
  }

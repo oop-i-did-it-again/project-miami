@@ -30,6 +30,7 @@ public:
     void addGP(Gamepiece*);
     void removeGP(Gamepiece*);
 	void checkCollisions();
+	void checkKey(unsigned char);
     void checkDoorCollisions();
 	bool collides(Gamepiece* a, Gamepiece* b);
     bool Doorcollides(Gamepiece* a, Gamepiece* b);

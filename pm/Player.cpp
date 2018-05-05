@@ -8,11 +8,6 @@ Player::Player(){
     
 }
 
-void Player::GetGame(Game* gm){
-    gamemode = gm;
-    
-}
-
 Player::~Player(){
 	delete model;
 }

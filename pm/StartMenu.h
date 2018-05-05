@@ -4,7 +4,9 @@
 
 class StartMenu{
 	TexRect* background[5];
+	TexRect* winscreen;
 	int quality;
+	bool win;
 	public:
 		
 		StartMenu();
