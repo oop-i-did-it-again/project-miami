@@ -24,7 +24,6 @@ class TexRect {
 
 public:
     TexRect (const char*, int, int, float, float, float, float);
-    
     void draw();
     void changePos(float, float);
     bool contains(float, float);
