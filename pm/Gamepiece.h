@@ -4,7 +4,7 @@
 
 
 class Game;
-enum Type { hero, baddy, environment, bullet };
+enum Type { hero, baddy, environment, bullet, door};
 
 
 class Gamepiece{

@@ -26,6 +26,7 @@ void Game::init(){
     
 	Player* Hero = new Player();
 	Hero->type = hero;
+    Hero->GetGame(this);
 	std::vector<Wall*> walls;
 	std::vector<Baddy*> baddies;
 	
@@ -45,6 +46,10 @@ WallSection *s1 = new WallSection(-1.0,-.75,.3,'x');
 WallSection *s2 = new WallSection(-.15,.3,.7,'y');
 WallSection *s3 = new WallSection(.3,0,.7,'x');
 WallSection *s4 = new WallSection(.3,.5,.7,'x');
+
+Door * thisDoor = new Door();
+thisDoor->x = -.2;
+thisDoor->type = door;
 }
 
 void Game::update(int delta){
@@ -150,9 +155,17 @@ void Game::checkCollisions(){
                 if(gp[j]->type == bullet){
                     
                     //bullet hitting wall
-                    if(gp[i]->type == environment){
+                    if(gp[i]->type == environment ){
                        delete gp[j];
                        continue;
+                    }
+                    
+                    if(gp[i]->type == door){
+                        Door* d = dynamic_cast<Door*>(gp[i]);
+                        if(d->open ==false){
+                            delete gp[j];
+                            continue;
+                        }                        
                     }
                     
                     //bullet hitting player
@@ -197,12 +210,38 @@ void Game::checkCollisions(){
                         continue;
                     }
 				}
+				
+                if(gp[j]->type == door ){
+                    if(gp[i]->type != door ){
+                        Door* d = dynamic_cast<Door*>(gp[j]);
+                        if(d->open == false){
+                        gp[i]->x=gp[i]->px;
+                        gp[i]->y=gp[i]->py;	
+                        }
+                        continue;
+                    }
+				}
+				
 			}
 		}
 	}
  }
  
-
+void Game::checkDoorCollisions(){
+    for(int i = 1; i < gp.size(); i++){
+       if(gp[i]->type == door){
+           Door* d = dynamic_cast<Door*>(gp[i]);
+            if (d->open == false)
+                d->radius = .11;
+            else
+                d->radius = .05;
+		if(collides(gp[i], gp[0])){
+             d->open= !d->open;
+        }
+       }
+    }
+    
+}
  bool Game::collides(Gamepiece* a, Gamepiece* b){
      
 	double D = sqrt( pow(a->x - b->x,2.0)+pow(a->y - b->y,2.0));

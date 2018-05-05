@@ -5,6 +5,7 @@
 #include "Baddy.h"
 #include "Player.h"
 #include "TexRect.h"
+#include "Door.h"
 #include "WallSection.h"
 #include <vector>
 #include <iostream>
@@ -29,8 +30,9 @@ public:
     void addGP(Gamepiece*);
     void removeGP(Gamepiece*);
 	void checkCollisions();
+    void checkDoorCollisions();
 	bool collides(Gamepiece* a, Gamepiece* b);
-
+    bool Doorcollides(Gamepiece* a, Gamepiece* b);
 };
 
 #endif
