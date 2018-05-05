@@ -15,7 +15,7 @@ void StartMenu::init(){
    background[2]=new TexRect("assets/title3.bmp",1,1,-1,1,2,2);
    background[3]=new TexRect("assets/title4.bmp",1,1,-1,1,2,2);
    background[4]=new TexRect("assets/title5.bmp",1,1,-1,1,2,2);
-   quality = rand() % 4;
+   quality = 0;
 }
 
 void StartMenu::draw(){
@@ -41,7 +41,7 @@ void StartMenu::checkKey(unsigned char key){
 }
 
 void StartMenu::update(){
-	quality++;
+	/*quality++;
 	if(quality > 4)
-		quality = 0;
+		quality = 0;*/
 }

@@ -17,6 +17,9 @@ class TexRect {
     float y;
     float w;
     float h;
+	float red;
+	float blue;
+	float green;
     GLuint texture_id;
 
 public:
@@ -25,7 +28,7 @@ public:
     void draw();
     void changePos(float, float);
     bool contains(float, float);
-	
+	void updateColor(float,float,float);
     float pos_x,pos_y;
     float sides;
 };

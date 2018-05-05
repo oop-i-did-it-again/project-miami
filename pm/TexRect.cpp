@@ -23,10 +23,13 @@ TexRect::TexRect (const char* filename, int rows, int cols, float x=0, float y=0
     pos_x=pos_y=1;
     sides=1;
     textures = this;
+	red = 1;
+	blue = 1;
+	green = 1;
 }
 
 void TexRect::draw(){
-	glColor3d(1,1,1);
+	glColor3d(red,blue,green);
     glBindTexture( GL_TEXTURE_2D, texture_id );
     glEnable(GL_TEXTURE_2D);
     glTexEnvf(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_MODULATE);
@@ -61,4 +64,9 @@ void TexRect::changePos(float px, float py){
 	y = py;
 }
 
+void TexRect::updateColor(float a,float b,float c){
+	red = a;
+	blue = b;
+	green = c;
+}
 
