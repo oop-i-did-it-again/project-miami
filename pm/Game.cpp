@@ -41,18 +41,10 @@ void Game::init(){
              baddies[i]->changeWeapon(pistol);
 	}
 	
-	for(int i = 0; i <=200; i+=1){
-        Wall* wall = new Wall();
-        wall->x = -1+double(i)/100;
-		wall->y = .8;
-        
-		wall->type = environment;
-		walls.push_back(wall);
-		
-
-	}
-
-
+WallSection *s1 = new WallSection(-1.0,-.75,.3,'x');
+WallSection *s2 = new WallSection(-.15,.3,.7,'y');
+WallSection *s3 = new WallSection(.3,0,.7,'x');
+WallSection *s4 = new WallSection(.3,.5,.7,'x');
 }
 
 void Game::update(int delta){

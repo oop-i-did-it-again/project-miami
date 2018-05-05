@@ -24,7 +24,7 @@ void App::idle(){
     // Update and redraw the scene when specified timestep passed
     if(delta >= 1000/TARGET_FPS){
         // Uncomment to cout fps to console
-        //cout << "FPS: " << 1000/delta << endl; 
+        cout << "FPS: " << 1000/delta << endl; 
 
         lastT = t;
 		if(playing)

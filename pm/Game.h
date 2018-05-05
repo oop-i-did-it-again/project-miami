@@ -5,7 +5,7 @@
 #include "Baddy.h"
 #include "Player.h"
 #include "TexRect.h"
-#include "Wall.h"
+#include "WallSection.h"
 #include <vector>
 #include <iostream>
 

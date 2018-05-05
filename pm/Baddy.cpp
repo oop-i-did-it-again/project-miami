@@ -18,16 +18,16 @@ void Baddy::update(int delta){
     x += delta * vx * speed;
     y += delta * vy * speed;
 
-    if(x > 1.0){
-        x = -1.0;
+    if(x > .95){
+        x = px;
     }
-    if(y > 1.0){
-        y = -1.0;
+    if(y > .95){
+        y =py;
     }
-    if(x < -1.0){
-        x = 1.0;
-    }if(y < -1.0){
-        y = 1.0;
+    if(x < -.95){
+        x = px;
+    }if(y < -.95){
+        y = py;
     }
     vx = 0.0;
     vy = 0.0;
