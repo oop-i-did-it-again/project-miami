@@ -5,7 +5,7 @@ WallSection::WallSection(double x1, double y1, double length, char direction ){
     
     
     if (direction == 'x'){
-    for (double i =0; i <length; i+=.01){
+    for (double i =0; i <=length; i+=.01){
             Wall* wall = new Wall();
             wall->x = x1 +i;
             wall->y = y1 ;
@@ -14,7 +14,7 @@ WallSection::WallSection(double x1, double y1, double length, char direction ){
     }
     }
      if (direction == 'y'){
-    for (double i =0; i <length; i+=.01){
+    for (double i =0; i <=length; i+=.01){
             Wall* wall = new Wall();
             wall->x = x1;
             wall->y = y1+i ;

@@ -32,6 +32,8 @@ void Game::init(){
 	popup = new DeathMenu();
 	Player* Hero = new Player();
 	Hero->type = hero;
+    Hero->x = -.9;
+    Hero->y = -.9;
 	std::vector<Wall*> walls;
 	std::vector<Baddy*> baddies;
 	death = 0;
@@ -39,8 +41,7 @@ void Game::init(){
 		baddies.push_back(new Baddy());
 		baddies[i]->type = baddy;
         int r2 = rand() % 3 +1;
-        baddies[i]->x = rand() % 2-1;
-        baddies[i]->y = rand() % 2-1;
+
         if(r2 == 3)
             baddies[i]->changeWeapon(shotgun);
         else
@@ -53,8 +54,14 @@ void Game::init(){
 	WallSection *s4 = new WallSection(.3,.5,.7,'x');
 
 	Door * thisDoor = new Door();
-	thisDoor->x = -.2;
+	thisDoor->x = -.7;
+    thisDoor->y = -.85;
 	thisDoor->type = door;
+    
+	Door * thisDoor1 = new Door();
+	thisDoor1->x = -.7;
+    thisDoor1->y = -.95;
+	thisDoor1->type = door;
 }
 
 void Game::update(int delta){
@@ -179,11 +186,11 @@ void Game::checkCollisions(){
     
     for(int i = 0; i < gp.size(); i++){
 		for(int j = i+1; j <gp.size(); j++){
-
 			if(collides(gp[i], gp[j])){
-                
+
                 //bullet hitting something
                 if(gp[j]->type == bullet){
+                    
                     
                     //bullet hitting wall
                     if(gp[i]->type == environment ){
@@ -209,7 +216,6 @@ void Game::checkCollisions(){
                             if(b->projectileType == pistol)
                                 p->health-=50;     
                             if(p->health <=0){
-                                std::cout<<"player dead"<<std::endl;
 								death = 1;
 							}
 							else
@@ -239,14 +245,14 @@ void Game::checkCollisions(){
                 
                 //nonwall hitting wall
 				if(gp[j]->type == environment){
-                    if(gp[i]->type != environment){
+                    if(gp[i]->type != environment && gp[i]->type != door){
                         gp[i]->x=gp[i]->px;
                         gp[i]->y=gp[i]->py;	
                         continue;
                     }
 				}
 				
-                if(gp[j]->type == door ){
+                if(gp[j]->type == door && gp[i]->type != environment){
                     if(gp[i]->type != door ){
                         Door* d = dynamic_cast<Door*>(gp[j]);
                         if(d->open == false){
