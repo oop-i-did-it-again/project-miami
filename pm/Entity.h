@@ -17,16 +17,12 @@ public:
     Entity();
     ~Entity();
     virtual void draw();
-    void updateColor();
+    void updateColor(int,int,int);
     //TexRect* texture;
 	TexRect* model;
     float radius;
     float length;
     float height;
-    float r;
-    float g;
-    float b;
-
 };
 
 #endif

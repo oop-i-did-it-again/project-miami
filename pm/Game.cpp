@@ -28,12 +28,13 @@ void Game::init(){
     // initializes every gamepiece
     // may not be necessary if we gamepieces calls their own inits
     // from their constructors. we shall see
-    
+    background = new TexRect("assets/gameboard.bmp",1,1,-1,1,2,2);
+	popup = new DeathMenu();
 	Player* Hero = new Player();
 	Hero->type = hero;
 	std::vector<Wall*> walls;
 	std::vector<Baddy*> baddies;
-	death = false;
+	death = 0;
 	for(int i = 0; i <10; i+=1){
 		baddies.push_back(new Baddy());
 		baddies[i]->type = baddy;
@@ -63,6 +64,29 @@ void Game::update(int delta){
     Player* hero = dynamic_cast<Player*>(gp[0]);
 	
 	//baddy movement
+	if(death==1){
+		for(int i=0;i<gp.size();i++){
+			if(gp[i]-> type == baddy){
+				Baddy* bad = dynamic_cast<Baddy*>(gp[i]);
+				bad->updateColor(1,0,0);
+			}
+		}
+		hero->updateColor(1,0,0);
+		background->updateColor(1,0,0);
+		death = 2;
+	}
+	else if(death==-1){
+		hero->health = 1000;
+		for(int i=0;i<gp.size();i++){
+			if(gp[i]-> type == baddy){
+				Baddy* bad = dynamic_cast<Baddy*>(gp[i]);
+				bad->updateColor(1,1,1);
+			}
+		}
+		hero->updateColor(1,1,1);
+		background->updateColor(1,1,1);
+		death = 0;
+	}
 	srand (time(NULL));
 	for(int i = 0; i < gp.size(); i++){
 		if(gp[i]-> type == baddy){
@@ -121,6 +145,8 @@ void Game::update(int delta){
 
 void Game::draw(){
     //  Calls draw function from every gamepiece
+	if(death>0)
+		popup->draw();
     for(int i = 0; i < gp.size(); i++)
         gp[i]->draw();
 	background->draw();
@@ -184,8 +210,10 @@ void Game::checkCollisions(){
                                 p->health-=50;     
                             if(p->health <=0){
                                 std::cout<<"player dead"<<std::endl;
-								death = true;
+								death = 1;
 							}
+							else
+								death = 0;
                             delete gp[j]; 
                             continue;
                         }
@@ -260,8 +288,8 @@ void Game::checkDoorCollisions(){
  }
 
  void Game::checkKey(unsigned char key){
-	 /*if(key == 'i')
-		 init();*/
+	 if(key == 'h')
+		 death = -1;
  }
  
 int Game::numberOfBaddies(){

@@ -2,7 +2,7 @@
 #include <iostream>
 
 DeathMenu::DeathMenu(){
-	popup = new TexRect("assets/deathscreen.bmp",1,1,-1,1,2,2);
+	popup = new TexRect("assets/deathscreen.bmp",1,1,-.7,.7,1.4,1);
 }
 
 void DeathMenu::draw(){

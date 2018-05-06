@@ -37,7 +37,7 @@ void Projectile::update(int delta){
 
 void Projectile::draw(){
 
-    glColor3d(1,0,0);
+    glColor3d(0,1,1);
     // Draw something
     
     //draw circular bullet. replace with texture

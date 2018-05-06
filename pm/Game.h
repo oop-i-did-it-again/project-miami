@@ -9,7 +9,7 @@
 #include "WallSection.h"
 #include <vector>
 #include <iostream>
-
+#include "DeathMenu.h"
 
 class Game{
     std::vector<Gamepiece*> gp; //replace this with array of gamepieces
@@ -17,10 +17,11 @@ class Game{
     static Game *instance;
 	int level;
 	int baddiesleft;
-	bool death;
+	int death;
     Game();
 public:
-    TexRect* background =  new TexRect("assets/gameboard.bmp",1,1,-1,1,2,2);
+    TexRect* background;
+	DeathMenu* popup;
     static Game* getGame();
     ~Game();
 	

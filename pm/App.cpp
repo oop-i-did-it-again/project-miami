@@ -97,11 +97,11 @@ void App::keyPress(unsigned char key) {
 		playing = true;
 	if(!playing){
 		startMenu->checkKey(key);
-		game->checkKey(key);
 		return;
 	}
     Player *p = game->getPlayerObject();
 	p->checkKey(key,true);
+	game->checkKey(key);
     if (key == ' ' )
         game->checkDoorCollisions();
 	if(key == 'k')
