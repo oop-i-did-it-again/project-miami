@@ -17,7 +17,7 @@ public:
     Entity();
     ~Entity();
     virtual void draw();
-    
+    void updateColor();
     //TexRect* texture;
 	TexRect* model;
     float radius;

@@ -17,6 +17,7 @@ class Game{
     static Game *instance;
 	int level;
 	int baddiesleft;
+	bool death;
     Game();
 public:
     TexRect* background =  new TexRect("assets/gameboard.bmp",1,1,-1,1,2,2);

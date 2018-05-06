@@ -33,7 +33,7 @@ void Game::init(){
 	Hero->type = hero;
 	std::vector<Wall*> walls;
 	std::vector<Baddy*> baddies;
-	
+	death = false;
 	for(int i = 0; i <10; i+=1){
 		baddies.push_back(new Baddy());
 		baddies[i]->type = baddy;
@@ -182,8 +182,10 @@ void Game::checkCollisions(){
                                 p->health-=33.4;
                             if(b->projectileType == pistol)
                                 p->health-=50;     
-                            if(p->health <=0)
+                            if(p->health <=0){
                                 std::cout<<"player dead"<<std::endl;
+								death = true;
+							}
                             delete gp[j]; 
                             continue;
                         }
@@ -258,8 +260,8 @@ void Game::checkDoorCollisions(){
  }
 
  void Game::checkKey(unsigned char key){
-	 if(key == 'i')
-		 init();
+	 /*if(key == 'i')
+		 init();*/
  }
  
 int Game::numberOfBaddies(){

@@ -3,11 +3,10 @@
 #include "TexRect.h"
 
 class DeathMenu{
+	TexRect* popup;
 	public:
 		
 		DeathMenu();
-		
-		void init();
 		void draw();
 		void checkKey(unsigned char key);
 

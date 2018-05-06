@@ -2,13 +2,9 @@
 #include <iostream>
 
 DeathMenu::DeathMenu(){
-	init();
-}
-
-void DeathMenu::init(){
-	
+	popup = new TexRect("assets/deathscreen.bmp",1,1,-1,1,2,2);
 }
 
 void DeathMenu::draw(){
-
+	popup->draw();
 }

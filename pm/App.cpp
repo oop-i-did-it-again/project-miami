@@ -28,8 +28,7 @@ void App::idle(){
 
         lastT = t;
 		if(playing){
-			game->update(delta);
-			std::cout<<game->numberOfBaddies()<<std::endl;
+			game->update(delta);	
 			if(game->numberOfBaddies()==0){
 				startMenu->displayWin(true);
 				playing = false;

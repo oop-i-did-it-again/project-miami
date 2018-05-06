@@ -5,7 +5,7 @@ Player::Player(){
     //speed = .001;
     //radius = 10;
 	model=new TexRect("assets/player.bmp",1,1,x-SIZE,y+SIZE,SIZE*2,SIZE*2);
-    
+    health = 1000;
 }
 
 Player::~Player(){
