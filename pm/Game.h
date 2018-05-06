@@ -15,6 +15,8 @@ class Game{
     std::vector<Gamepiece*> gp; //replace this with array of gamepieces
     std::vector <unsigned char> keyList;
     static Game *instance;
+	int level;
+	int baddiesleft;
     Game();
 public:
     TexRect* background =  new TexRect("assets/gameboard.bmp",1,1,-1,1,2,2);
@@ -26,7 +28,7 @@ public:
     void draw(); // called every frame, render stuff here
     Player* getPlayerObject();
 
-
+	int numberOfBaddies();
     void addGP(Gamepiece*);
     void removeGP(Gamepiece*);
 	void checkCollisions();

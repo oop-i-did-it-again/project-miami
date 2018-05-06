@@ -17,7 +17,12 @@ Game::Game(){
     init();
 }
 
-Game::~Game(){}
+Game::~Game(){
+	delete getPlayerObject();
+	for(int i=0;i<gp.size();i++){
+		removeGP(gp.at(i));
+	}
+}
 
 void Game::init(){
     // initializes every gamepiece
@@ -41,26 +46,27 @@ void Game::init(){
              baddies[i]->changeWeapon(pistol);
 	}
 	
-WallSection *s1 = new WallSection(-1.0,-.75,.3,'x');
-WallSection *s2 = new WallSection(-.15,.3,.7,'y');
-WallSection *s3 = new WallSection(.3,0,.7,'x');
-WallSection *s4 = new WallSection(.3,.5,.7,'x');
+	WallSection *s1 = new WallSection(-1.0,-.75,.3,'x');
+	WallSection *s2 = new WallSection(-.15,.3,.7,'y');
+	WallSection *s3 = new WallSection(.3,0,.7,'x');
+	WallSection *s4 = new WallSection(.3,.5,.7,'x');
 
-Door * thisDoor = new Door();
-thisDoor->x = -.2;
-thisDoor->type = door;
+	Door * thisDoor = new Door();
+	thisDoor->x = -.2;
+	thisDoor->type = door;
 }
 
 void Game::update(int delta){
     // Calls update function from every gamepiece
     // delta is milliseconds elapsed since last frame
-	
+	baddiesleft = 0;
     Player* hero = dynamic_cast<Player*>(gp[0]);
 	
 	//baddy movement
 	srand (time(NULL));
 	for(int i = 0; i < gp.size(); i++){
 		if(gp[i]-> type == baddy){
+			baddiesleft++;
 			Baddy* bad = dynamic_cast<Baddy*>(gp[i]);
 			int random = rand() % 20;
 			if (random == 0){
@@ -252,5 +258,10 @@ void Game::checkDoorCollisions(){
  }
 
  void Game::checkKey(unsigned char key){
-	 
+	 if(key == 'i')
+		 init();
  }
+ 
+int Game::numberOfBaddies(){
+	return baddiesleft;
+}

@@ -19,16 +19,31 @@ void StartMenu::init(){
 }
 
 void StartMenu::draw(){
-	background[quality]->draw();
-	
+	if(!win)
+		background[quality]->draw();
+	else
+		winscreen->draw();
 }
 
-void StartMenu::checkKey(unsigned char key){
-	if(key == 's' && quality<4)
-		quality++;
-	if(key == 'w' && quality>0)
-		quality--;
+int StartMenu::checkKey(unsigned char key){
+	if(key == 's'){
+		if(quality<4)
+			quality++;
+	}
+	else if(key == 'w'){
+		if(quality>0)
+			quality--;
+	}
+	else if(key == '2')
+		return 2;
+	else if(key == '3')
+		return 3;
+	else
+		return 1;
+	return 0;
+		
 }
 
-void StartMenu::update(){
+void StartMenu::displayWin(bool x){
+	win=x;
 }

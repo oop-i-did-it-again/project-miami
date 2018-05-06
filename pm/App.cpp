@@ -27,10 +27,14 @@ void App::idle(){
         //cout << "FPS: " << 1000/delta << endl; 
 
         lastT = t;
-		if(playing)
+		if(playing){
 			game->update(delta);
-        else
-            startMenu->update();
+			std::cout<<game->numberOfBaddies()<<std::endl;
+			if(game->numberOfBaddies()==0){
+				startMenu->displayWin(true);
+				playing = false;
+			}
+		}
         redraw();
     }
 
@@ -102,5 +106,5 @@ void App::keyPress(unsigned char key) {
     if (key == ' ' )
         game->checkDoorCollisions();
 	if(key == 'k')
-		playing=false;	
+		playing=!playing;
 }

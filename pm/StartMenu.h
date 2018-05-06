@@ -13,8 +13,8 @@ class StartMenu{
 		
 		void init();
 		void draw();
-		void update();
-		void checkKey(unsigned char key);
+		void displayWin(bool);
+		int checkKey(unsigned char key);
 
 };
 
