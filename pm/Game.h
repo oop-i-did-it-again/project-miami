@@ -15,7 +15,6 @@ class Game{
     std::vector<Gamepiece*> gp; //replace this with array of gamepieces
     std::vector <unsigned char> keyList;
     static Game *instance;
-	int level;
 	int baddiesleft;
 	int death;
     Game();
@@ -29,7 +28,7 @@ public:
     void update(int delta); // called every frame, handle game logic here
     void draw(); // called every frame, render stuff here
     Player* getPlayerObject();
-
+	void setLevel(int);
 	int numberOfBaddies();
     void addGP(Gamepiece*);
     void removeGP(Gamepiece*);

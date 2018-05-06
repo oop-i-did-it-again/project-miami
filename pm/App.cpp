@@ -93,10 +93,11 @@ void App::keyLift(unsigned char key) {
 void App::keyPress(unsigned char key) {
 	if (key == 27)
 		exit(0);
-	if(key == 'j')
-		playing = true;
 	if(!playing){
-		startMenu->checkKey(key);
+		int num = startMenu->checkKey(key);
+		game->setLevel(num);
+		if(num == 1)
+			playing = true;
 		return;
 	}
     Player *p = game->getPlayerObject();

@@ -292,6 +292,18 @@ void Game::checkDoorCollisions(){
 		 death = -1;
  }
  
+ void Game::setLevel(int num){
+	 if(num==0)
+		 return;//ignore zero
+	 else if(num==1)
+		 return;
+	 else if(num==2)
+		 return;
+	 else if(num==3)
+		 return;
+	 //from here add walls and enemies 
+ }
+ 
 int Game::numberOfBaddies(){
 	return baddiesleft;
 }
