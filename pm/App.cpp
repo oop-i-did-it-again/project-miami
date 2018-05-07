@@ -24,13 +24,18 @@ void App::idle(){
     // Update and redraw the scene when specified timestep passed
     if(delta >= 1000/TARGET_FPS){
         // Uncomment to cout fps to console
-        cout << "FPS: " << 1000/delta << endl; 
+        //cout << "FPS: " << 1000/delta << endl; 
 
         lastT = t;
+        
+        if(pause){
+            startMenu->displayWin(true,true);
+        }
 		if(playing){
 			game->update(delta);	
 			if(game->numberOfBaddies()==0){
-				startMenu->displayWin(true);
+                        
+				startMenu->displayWin(true,pause);
 				playing = false;
 			}
 		}
@@ -50,10 +55,18 @@ void App::draw() {
     glLoadIdentity();
 
     //Draw gamepieces
-	if(playing)
+    
+	if(playing){
 		game->draw();
-	else
-		startMenu->draw();
+      cout<<"1"<<endl;  
+    }
+    else if(!playing && pause == false){
+        startMenu->draw();
+	cout<<"2"<<endl;  
+    }else if (pause){
+		pausescreen->draw();
+        cout<<"3"<<endl;  
+    }
     // We have been drawing everything to the back buffer
     // Swap the buffers to see the result of what we drew
     glFlush();
@@ -96,6 +109,9 @@ void App::keyPress(unsigned char key) {
 	if(!playing){
 		int num = startMenu->checkKey(key);
 		game->setLevel(num);
+        	if(key == 'p'){
+        pause=!pause;
+    }
 		if(num == 1)
 			playing = true;
 		return;
@@ -105,6 +121,9 @@ void App::keyPress(unsigned char key) {
 	game->checkKey(key);
     if (key == ' ' )
         game->checkDoorCollisions();
-	if(key == 'k')
+	if(key == 'p'){
 		playing=!playing;
+        pause=!pause;
+
+    }
 }

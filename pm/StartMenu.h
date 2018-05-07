@@ -5,15 +5,18 @@
 class StartMenu{
 	TexRect* background[5];
 	TexRect* winscreen;
+
 	int quality;
-	bool win;
+	bool win = false;
+    bool pause = false;
 	public:
 		
 		StartMenu();
 		
 		void init();
 		void draw();
-		void displayWin(bool);
+		void displayWin(bool,bool);
+        
 		int checkKey(unsigned char key);
 
 };

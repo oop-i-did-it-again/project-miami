@@ -62,6 +62,7 @@ void Player::normalize(){
 
 
   void Player::shoot(float y1, float x1, float y2, float x2,bulletType a){
+       if(health >0){
       if (gun == shotgun){
            if(shotgunClip == -1)
                     shotgunClip =2;//reload
@@ -83,10 +84,11 @@ void Player::normalize(){
           }
           pistolClip--;
     }
-      
+       }
   }
 
  void Player::checkKey(unsigned char key, bool state){
+     if(health >0){
 	 if (key == 'w')
         up = state;
     if (key == 'a' )
@@ -99,5 +101,5 @@ void Player::normalize(){
 		changeWeapon(pistol);
     if (key == '3' )
         changeWeapon(shotgun);
-    
+     }
  }

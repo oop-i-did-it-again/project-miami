@@ -19,10 +19,11 @@ void StartMenu::init(){
 }
 
 void StartMenu::draw(){
-	if(!win)
+	//if(!win)
 		background[quality]->draw();
-	else
+	 if (win)
 		winscreen->draw();
+
 }
 
 int StartMenu::checkKey(unsigned char key){
@@ -44,6 +45,7 @@ int StartMenu::checkKey(unsigned char key){
 		
 }
 
-void StartMenu::displayWin(bool x){
+void StartMenu::displayWin(bool x,bool y){
 	win=x;
+    pause = y;
 }

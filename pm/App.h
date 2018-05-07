@@ -14,9 +14,11 @@ class App: public GlutApp {
     double delta;
     const double TARGET_FPS = 62.0;
 	bool playing;
+    bool pause = false;
     timespec ts;
     Game* game; // gamemanager, handles all game logic
 	StartMenu* startMenu;
+    TexRect* pausescreen = new TexRect("assets/title5.bmp",1,1,-1,1,2,2);
 public:
     // Constructor, to initialize state
     App(const char* label, int x, int y, int w, int h);
