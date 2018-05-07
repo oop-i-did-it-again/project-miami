@@ -55,13 +55,13 @@ void Game::init(){
 
 	Door * thisDoor = new Door();
 	thisDoor->x = -.7;
-    thisDoor->y = -.85;
+    thisDoor->y = -.9;
 	thisDoor->type = door;
     
-	Door * thisDoor1 = new Door();
-	thisDoor1->x = -.7;
-    thisDoor1->y = -.95;
-	thisDoor1->type = door;
+	//Door * thisDoor1 = new Door();
+	//thisDoor1->x = -.7;
+    //thisDoor1->y = -.95;
+	//thisDoor1->type = door;
 }
 
 void Game::update(int delta){
