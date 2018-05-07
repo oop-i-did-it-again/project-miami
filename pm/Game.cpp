@@ -313,3 +313,11 @@ void Game::checkDoorCollisions(){
 int Game::numberOfBaddies(){
 	return baddiesleft;
 }
+
+
+ void Game::reset(){
+     gp.erase (gp.begin(),gp.end());
+        init();
+        
+    
+ }

@@ -58,14 +58,13 @@ void App::draw() {
     
 	if(playing){
 		game->draw();
-      cout<<"1"<<endl;  
+
     }
     else if(!playing && pause == false){
         startMenu->draw();
-	cout<<"2"<<endl;  
+	
     }else if (pause){
 		pausescreen->draw();
-        cout<<"3"<<endl;  
     }
     // We have been drawing everything to the back buffer
     // Swap the buffers to see the result of what we drew
@@ -124,6 +123,9 @@ void App::keyPress(unsigned char key) {
 	if(key == 'p'){
 		playing=!playing;
         pause=!pause;
-
     }
+    	if(key == 'r'){
+        game->reset();
+    }
+    
 }

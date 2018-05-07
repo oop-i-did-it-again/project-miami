@@ -37,6 +37,7 @@ public:
     void checkDoorCollisions();
 	bool collides(Gamepiece* a, Gamepiece* b);
     bool Doorcollides(Gamepiece* a, Gamepiece* b);
+    void reset();
 };
 
 #endif
