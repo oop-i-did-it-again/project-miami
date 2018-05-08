@@ -39,13 +39,13 @@ void App::idle(){
         game->my = this->my;
         
         if(pause){
-            startMenu->displayWin(true,true);
+            startMenu->displayWin(false,true);
         }
 		if(playing){
 			game->update(delta);	
 			if(game->numberOfBaddies()==0){
                         
-				startMenu->displayWin(true,pause);
+				startMenu->displayWin(true,false);
 				playing = false;
 			}
 		}
