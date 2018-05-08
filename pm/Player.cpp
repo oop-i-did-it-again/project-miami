@@ -1,6 +1,16 @@
 #include "Player.h"
 #define SIZE .06
 
+Player* Player::instance = 0;
+
+Player* Player::getPlayer(){
+    if(instance == 0){
+        instance = new Player();
+    }
+
+    return instance;
+}
+
 Player::Player(){
     //speed = .001;
     //radius = 10;

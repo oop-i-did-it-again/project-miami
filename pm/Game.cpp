@@ -32,7 +32,7 @@ void Game::init(){
    
     background = new TexRect("assets/gameboard.bmp",1,1,-1,1,2,2);
 	popup = new DeathMenu();
-	Player* Hero = new Player();
+	Player* Hero = Player::getPlayer();
 	Hero->type = hero;
     Hero->x = -.9;
     Hero->y = -.9;
