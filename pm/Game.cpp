@@ -16,6 +16,9 @@ Game::Game(){
     Crosshairs::setGM(this);
     srand (time(NULL));
     player = Player::getPlayer();
+    background = new TexRect("assets/gameboard.bmp",1,1,-1,1,2,2);
+	popup = new DeathMenu();
+    ch = new Crosshairs();
     //init();
 
 }
@@ -31,9 +34,7 @@ void Game::init(){
     // may not be necessary if we gamepieces calls their own inits
     // from their constructors. we shall see
     clearScreen();
-    background = new TexRect("assets/gameboard.bmp",1,1,-1,1,2,2);
-	popup = new DeathMenu();
-    ch = new Crosshairs();
+
 
 
     player->x = -.9;
@@ -62,9 +63,9 @@ void Game::init(){
         thisDoor->y = -.9;
     }
     if (gamemode == 2){
-            for(int i = 0; i <10; i+=1){
+        for(int i = 0; i <10; i+=1){
             Baddy* b = new Baddy();
-	    b->x += (i % 2) - .5;
+            b->x = .6;
             int r2 = rand() % 3 +1;
             if(r2 == 3)
                 baddies[i]->changeWeapon(shotgun);
@@ -87,6 +88,11 @@ void Game::init(){
         thisDoor1->x = 0;
         thisDoor1->y = 0;
         thisDoor1->type = door;
+    }
+    if (gamemode == 3){
+        Baddy* angelo = new Angelo();
+        angelo->changeWeapon(pistol);
+        
     }
 
 }
@@ -225,11 +231,11 @@ void Game::removeGP(Gamepiece* toErase){
 // DO NOT CALL - Baddies already calls this in its deconstructor
 // use delete instead
 void Game::removeBaddie(Baddy* toErase){
-   // std::cout << gp.size() << std::endl;
+    std::cout << gp.size() << std::endl;
     for(int i = 0; i < baddies.size(); i++){
         if (toErase == baddies[i]){
             baddies.erase(baddies.begin() + i);
-            //std::cout << gp.size() << std::endl;
+            std::cout << gp.size() << std::endl;
         }
     }
 }
@@ -388,16 +394,26 @@ int Game::numberOfBaddies(){
 void Game::reset(){
     clearScreen();
     player->health = 1000;
+    player->up = false;
+    player->left = false;
+    player->right = false;
+    player->down = false;
     player->updateColor(1.0,1.0,1.0);
     init();
 }
 
 void Game::clearScreen(){
+ 
     for(int i = gp.size() - 1;i > 0; i--){
-
         delete gp[i];
         std::cout << "gp size" << gp.size() << std::endl;
     }
+    baddies.clear();
+    walls.clear();
+    doors.clear();
+
+    //gp.clear();
+    //player = NULL;
 }
 
 void Game::WallSection(double x1, double y1, double length, char direction ){

@@ -11,6 +11,7 @@
 #include <iostream>
 #include "DeathMenu.h"
 #include "Crosshairs.h"
+#include "Angelo.h"
 
 class Game{
     std::vector<Gamepiece*> gp; //replace this with array of gamepieces

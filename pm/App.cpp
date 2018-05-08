@@ -120,7 +120,7 @@ void App::keyPress(unsigned char key) {
 	if (key == 27)
 		exit(0);
 	if(!playing){
-        if (key == '1' || key == '2'){
+        if (key == '1' || key == '2' ||key == '3'){
 		int num = startMenu->checkKey(key);
 		game->setLevel(num);
         	if(key == 'p'){
