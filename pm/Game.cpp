@@ -76,13 +76,11 @@ void Game::init(){
 	}
 
     
-<<<<<<< HEAD
 	//Door * thisDoor1 = new Door();
 	//thisDoor1->x = -.7;
     //thisDoor1->y = -.95;
 	//thisDoor1->type = door;
     ch = new Crosshairs();
-=======
    
 
      WallSection *s1 = new WallSection(-1.0,-.75,.3,'x');
@@ -103,7 +101,6 @@ void Game::init(){
     thisDoor1->y = 0;
 	thisDoor1->type = door;
     }
->>>>>>> 4e858c415d095658bdeb0e97c4e1e4d39422b8ce
 }
 
 void Game::update(int delta){
