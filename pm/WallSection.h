@@ -12,10 +12,10 @@ public:
     WallSection(double, double, double, char);
 
     ~WallSection();
-     void draw();
     
-   std::vector <Wall*> section;
-    TexRect* Walltexture;
+    
+   //std::vector <Wall*> section;
+    //TexRect* Walltexture;
 
 };
 

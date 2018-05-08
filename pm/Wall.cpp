@@ -1,5 +1,5 @@
 #include "Wall.h"
-
+#include "Game.h"
 
 Wall::Wall( ){
    
@@ -12,10 +12,12 @@ y=-5;
     radius = .05;
     length = .1;
     height = .1;        
-    
+    this->type = environment;
+    gm->addWall(this);
 }
 
 Wall::~Wall(){
+    gm->removeWall(this);
 }
 
 void Wall::draw(){
@@ -32,24 +34,4 @@ void Wall::draw(){
 		glEnd();	
 		glColor3d(0,0,0);
     }
-
-	
-
-
-
-	
-	
-	
-
-    //MAYBE A TEXTURE
-    /*
-    GLuint tex;
-    glGenTextures(1, &tex);
-    glBindTexture(GL_TEXTURE_2D, tex);
-    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
-    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
-    float color[] = { 1.0f, 0.0f, 0.0f, 1.0f };
-    glTexParameterfv(GL_TEXTURE_2D, GL_TEXTURE_BORDER_COLOR, color);
-    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
-    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR)*/
 }
