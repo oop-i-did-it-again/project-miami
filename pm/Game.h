@@ -18,6 +18,7 @@ class Game{
 	std::vector<Baddy*> baddies;
     std::vector<Door*> doors;
     std::vector <unsigned char> keyList;
+    Player* player;
     static Game *instance;
 	int baddiesleft;
 	int death;

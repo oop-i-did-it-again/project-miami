@@ -1,7 +1,7 @@
 #include "Game.h"
 #include <stdio.h>
-Game* Game::instance = 0;
 
+Game* Game::instance = 0;
 
 Game* Game::getGame(){
     if(instance == 0){
@@ -15,7 +15,7 @@ Game::Game(){
     Gamepiece::setGM(this);
     Crosshairs::setGM(this);
     srand (time(NULL));
-
+    player = Player::getPlayer();
     //init();
 
 }
@@ -35,9 +35,9 @@ void Game::init(){
 	popup = new DeathMenu();
     ch = new Crosshairs();
 
-    Player* Hero = Player::getPlayer();
-    Hero->x = -.9;
-    Hero->y = -.9;
+
+    player->x = -.9;
+    player->y = -.9;
     
 	death = 0;
     
@@ -94,7 +94,7 @@ void Game::update(int delta){
     // Calls update function from every gamepiece
     // delta is milliseconds elapsed since last frame
 	baddiesleft = 0;
-    Player* hero = dynamic_cast<Player*>(gp[0]);
+    Player* player = dynamic_cast<Player*>(gp[0]);
 	
 	//baddy movement
 	if(death==1){
@@ -104,19 +104,19 @@ void Game::update(int delta){
 				bad->updateColor(1,0,0);
 			}
 		}
-		hero->updateColor(1,0,0);
+		player->updateColor(1,0,0);
 		background->updateColor(1,0,0);
 		death = 2;
 	}
 	else if(death==-1){
-		hero->health = 1000;
+		player->health = 1000;
 		for(int i=0;i<gp.size();i++){
 			if(gp[i]-> type == baddy){
 				Baddy* bad = dynamic_cast<Baddy*>(gp[i]);
 				bad->updateColor(1,1,1);
 			}
 		}
-		hero->updateColor(1,1,1);
+		player->updateColor(1,1,1);
 		background->updateColor(1,1,1);
 		death = 0;
 	}
@@ -155,21 +155,21 @@ void Game::update(int delta){
 				bad->moveR();
             }
             if (random > 17 )
-                bad->shoot(hero->y,hero->x,bad->y,bad->x, baddyBullet);
+                bad->shoot(player->y,player->x,bad->y,bad->x, baddyBullet);
 		}
 	}
 	
 	checkCollisions();
 
-	//hero movements
-    if (hero->up )
-        hero->moveU();
-    if (hero->down )
-       hero->moveD();
-    if (hero->left )
-        hero->moveL();
-    if (hero->right )
-       hero->moveR();
+	//player movements
+    if (player->up )
+        player->moveU();
+    if (player->down )
+       player->moveD();
+    if (player->left )
+        player->moveL();
+    if (player->right )
+       player->moveR();
 
 	//update every gamepiece
     for(int i = 0; i < gp.size(); i++)
@@ -386,15 +386,17 @@ int Game::numberOfBaddies(){
 
 void Game::reset(){
     clearScreen();
+    player->health = 1000;
+    player->updateColor(1.0,1.0,1.0);
     init();
 }
 
 void Game::clearScreen(){
     for(int i = gp.size() - 1;i > 1; i--){
-    if (gp[i]->type != hero)
+        std::cout << "gp size" << gp.size() << std::endl;
         delete gp[i];
-	}
-    std::cout << "size" << gp.size() << std::endl;
+
+    }
 }
 
 void Game::WallSection(double x1, double y1, double length, char direction ){
