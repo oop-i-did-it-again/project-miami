@@ -23,14 +23,9 @@ void Wall::draw(){
     
     if(this->type != door || this->type != nothing){
 
-		glPointSize(length);
-		glColor3d(1,1,1);	
-		glBegin(GL_POLYGON);
-		glVertex2f(x-length/2, y+height/2);
-		glVertex2f(x+length/2, y+height/2);
-		glVertex2f(x+length/2, y-height/2);
-		glVertex2f(x-length/2, y-height/2);
-		glEnd();	
-		glColor3d(0,0,0);
+            model->changePos(x-.07, y+.05);
+                model->draw();
+   
+
     }
 }

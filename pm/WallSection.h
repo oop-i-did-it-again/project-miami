@@ -9,11 +9,16 @@ class WallSection: public Wall{
 private:
 public:
 
+    int xx;
+    int yy;
+    int llength;
+    char cdir;
+    
     WallSection(double, double, double, char);
 
     ~WallSection();
     
-    
+    void draw();
    //std::vector <Wall*> section;
     //TexRect* Walltexture;
 

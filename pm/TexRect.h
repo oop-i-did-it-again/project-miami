@@ -15,7 +15,7 @@
 class TexRect {
     float x;
     float y;
-    float w;
+
     float h;
 	float red;
 	float blue;
@@ -23,6 +23,7 @@ class TexRect {
     GLuint texture_id;
 
 public:
+        float w;
     TexRect (const char*, int, int, float, float, float, float);
     void draw();
     void changePos(float, float);

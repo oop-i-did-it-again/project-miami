@@ -78,7 +78,7 @@ void Game::init(){
         thisDoor->x = -.71;
         thisDoor->y = -.9;
 
-        WallSection(-1,.5,1,'x');
+     
         WallSection(.4,.2,.8,'y');
         WallSection(.4,-1,.8,'y');
         WallSection(.0,.15,.41,'x');
