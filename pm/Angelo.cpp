@@ -9,7 +9,7 @@ Angelo::Angelo(){
     //radius = 10;
     phase = 1;
     this->type = baddy;
-    this->health = 8000;
+    this->health = 4000;
     this->radius = .25;
     this->y = 0.95;
     this->speed =  0.0007;
@@ -98,7 +98,7 @@ void Angelo::normalize(){
         radX +=0.1;
         int numBullet = 4 ;  
         for (int i =0; i < numBullet; i++){
-            new Projectile(this->x,this->y, radX, 25000,.0003, .01 , pistol);
+            new Projectile(this->x,this->y, radX, 25000,.0003, .025 , pistol);
             radX+= 2.0 / numBullet * 3.14  ;
         }
   }
@@ -106,10 +106,20 @@ void Angelo::normalize(){
   void Angelo::shootO(){   
         int numBullet = 25;  
         for (int i =0; i < numBullet; i++){
-            new Projectile(this->x,this->y, radO, 25000,.0001, .01 , pistol);
+            new Projectile(this->x,this->y, radO, 25000,.0001, .015 , pistol);
             radO += 2.0 / numBullet * 3.14 ;
         }
   }
+  
+  void Angelo::shootS(){   
+        float radS = -.4;
+        int numBullet = 3;  
+        for (int i =0; i < numBullet; i++){
+            new Projectile(this->x,this->y, radS, 25000,.0001, .04 , pistol);
+            radS += 0.4;
+        }
+  }
+
   void Angelo::shoot(float y1, float x1, float y2, float x2,bulletType a){
 
   }
@@ -165,6 +175,12 @@ void Angelo::phase3(int delta){
         oTimer -= delta;
     }
     //wander();
+    if( shotgunTimer < 0){
+        shotgunTimer = oCD;
+        shootS();
+    }else{
+        shotgunTimer -= delta;
+    }
 }
 
 void Angelo::phase4(int delta){

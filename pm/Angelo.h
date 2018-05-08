@@ -36,6 +36,7 @@ class Angelo: public Baddy{
 
         void shootX();
         void shootO();
+        void shootS();
         int spawnMinionTimer = 0;
         int spawnMinionCD = 1700;
 
@@ -43,8 +44,11 @@ class Angelo: public Baddy{
         int xCD = 800;
         int oTimer = 0;
         int oCD = 5000;
+        int shotgunTimer = 0;
+        int shotgunCD = 2500;
         float radX = 0.0;
         float radO = 0.0;
+        float radS = 0.0;
 };
 
 #endif
