@@ -138,7 +138,7 @@ void Angelo::normalize(){
 void Angelo::phase1(int delta){
     moveD();
     float dy = abs(delta * vy * speed);
-    cout << dy << endl;
+    //cout << dy << endl;
     if(y <= 0.0 + dy && y >= 0.0 - dy){
         y = 0.0;
         phase = 2;
