@@ -15,6 +15,7 @@ Game::Game(){
     Gamepiece::setGM(this);
     Crosshairs::setGM(this);
     srand (time(NULL));
+
     //init();
 
 }
@@ -33,10 +34,11 @@ void Game::init(){
     background = new TexRect("assets/gameboard.bmp",1,1,-1,1,2,2);
 	popup = new DeathMenu();
     ch = new Crosshairs();
-	Player* Hero = Player::getPlayer();
+
+    Player* Hero = Player::getPlayer();
     Hero->x = -.9;
     Hero->y = -.9;
-
+    
 	death = 0;
     
     std::cout<<gamemode<<std::endl;
@@ -392,6 +394,7 @@ void Game::clearScreen(){
     if (gp[i]->type != hero)
         delete gp[i];
 	}
+    std::cout << "size" << gp.size() << std::endl;
 }
 
 void Game::WallSection(double x1, double y1, double length, char direction ){
