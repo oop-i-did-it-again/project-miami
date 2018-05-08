@@ -50,3 +50,7 @@ void StartMenu::displayWin(bool x,bool y){
 	win=x;
     pause = y;
 }
+
+bool StartMenu::checkWin(){
+	return win;
+}

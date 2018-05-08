@@ -65,7 +65,8 @@ void App::draw() {
     glLoadIdentity();
 
     //Draw gamepieces
-    
+    if(startMenu->checkWin())
+		pause = false;
 	if(playing){
         game->draw();
     }
@@ -125,6 +126,8 @@ void App::keyPress(unsigned char key) {
 		game->setLevel(num);
         	if(key == 'p'){
         pause=!pause;
+		playing=!playing;
+		startMenu->displayWin(false,false);
     }
 			playing = true;
     }
@@ -138,9 +141,11 @@ void App::keyPress(unsigned char key) {
 	if(key == 'p'){
 		playing=!playing;
         pause=!pause;
+		startMenu->displayWin(false,false);
     }
     	if(key == 'r'){
         game->reset();
+		startMenu->displayWin(false,false);
     }
     }
     
