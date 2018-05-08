@@ -23,26 +23,14 @@ Door::~Door(){
 void Door::draw(){
     
         if(open ==false){
-		glPointSize(length);
-		glColor3d(1,0,0);	
-		glBegin(GL_POLYGON);
-		glVertex2f(x-length/2, y+height/2);
-		glVertex2f(x+length/2, y+height/2);
-		glVertex2f(x+length/2, y-height/2);
-		glVertex2f(x-length/2, y-height/2);
-		glEnd();	
-		glColor3d(0,0,0);
+            model->changePos(x-.05, y+.1);
+             model->w = .1;
+                model->draw();
         }
         else{
-        glPointSize(length);
-		glColor3d(1,0,0);	
-		glBegin(GL_POLYGON);
-		glVertex2f(x-length/2, y+height/2);
-		glVertex2f(x+length/4, y+height/2);
-		glVertex2f(x+length/4, y-height/2);
-		glVertex2f(x-length/2, y-height/2);
-		glEnd();	
-		glColor3d(0,0,0);
+            model->changePos(x-.05, y+.1);
+             model->w = .05;
+                model->draw();
             
             
         }

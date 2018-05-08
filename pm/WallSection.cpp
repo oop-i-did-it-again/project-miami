@@ -2,7 +2,10 @@
 
 
 WallSection::WallSection(double x1, double y1, double length, char direction ){
-    
+    xx = x1;
+    yy = y1;
+    llength = length;
+    cdir = direction;
     
     if (direction == 'x'){
     for (double i =0; i <=length; i+=.01){
@@ -26,4 +29,11 @@ WallSection::WallSection(double x1, double y1, double length, char direction ){
 
 WallSection::~WallSection(){
 
+}
+
+void WallSection::draw(){
+    
+    
+
+    
 }

@@ -16,7 +16,7 @@ public:
 
     ~Door();
     virtual void draw();
-    
+      TexRect* model=new TexRect("assets/door.bmp",1,1,x-.05,y+.1,.1,.2);
     //TexRect* texture;
 
     bool open = false;

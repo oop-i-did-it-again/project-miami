@@ -15,8 +15,9 @@ public:
     Wall();
 
     ~Wall();
+  
     virtual void draw();
-    
+    TexRect* model=new TexRect("assets/wall.bmp",1,1,x-.06,y+.06,.1,.1);
     //TexRect* texture;
 
     float radius;
