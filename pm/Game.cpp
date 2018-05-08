@@ -45,6 +45,7 @@ void Game::init(){
     if (gamemode ==1){
         for(int i = 0; i <10; i+=1){
             Baddy* b = new Baddy();
+	    b->x += (i % 2) - .5;
             int r2 = rand() % 3 +1;
             if(r2 == 3)
                 baddies[i]->changeWeapon(shotgun);
