@@ -16,9 +16,7 @@ Game::Game(){
     Crosshairs::setGM(this);
     srand (time(NULL));
     //init();
-    background = new TexRect("assets/gameboard.bmp",1,1,-1,1,2,2);
-	popup = new DeathMenu();
-    ch = new Crosshairs();
+
 }
 
 Game::~Game(){
@@ -31,9 +29,10 @@ void Game::init(){
     // initializes every gamepiece
     // may not be necessary if we gamepieces calls their own inits
     // from their constructors. we shall see
-   
     clearScreen();
-
+    background = new TexRect("assets/gameboard.bmp",1,1,-1,1,2,2);
+	popup = new DeathMenu();
+    ch = new Crosshairs();
 	Player* Hero = Player::getPlayer();
     Hero->x = -.9;
     Hero->y = -.9;
@@ -42,7 +41,7 @@ void Game::init(){
     
     std::cout<<gamemode<<std::endl;
     if (gamemode ==1){
-        for(int i = 0; i <1; i+=1){
+        for(int i = 0; i <10; i+=1){
             Baddy* b = new Baddy();
             int r2 = rand() % 3 +1;
             if(r2 == 3)
@@ -51,10 +50,10 @@ void Game::init(){
                 baddies[i]->changeWeapon(pistol);
         }
         
-        WallSection *s1 = new WallSection(-1.0,-.75,.3,'x');
-        WallSection *s2 = new WallSection(-.15,.3,.7,'y');
-        WallSection *s3 = new WallSection(.3,0,.7,'x');
-        WallSection *s4 = new WallSection(.3,.5,.7,'x');
+        WallSection(-1.0,-.75,.3,'x');
+        WallSection(-.15,.3,.7,'y');
+        WallSection(.3,0,.7,'x');
+        WallSection(.3,.5,.7,'x');
 
         Door * thisDoor = new Door();
         thisDoor->x = -.71;
@@ -70,16 +69,16 @@ void Game::init(){
                 baddies[i]->changeWeapon(pistol);
         }
 
-        WallSection *s1 = new WallSection(-1.0,-.75,.3,'x');
+        WallSection(-1.0,-.75,.3,'x');
         Door * thisDoor = new Door();
         thisDoor->x = -.71;
         thisDoor->y = -.9;
 
-        WallSection *s2 = new WallSection(-1,.5,1,'x');
-        WallSection *s3 = new WallSection(.4,.2,.8,'y');
-        WallSection *s4 = new WallSection(.4,-1,.8,'y');
-        WallSection *s5 = new WallSection(.0,.15,.41,'x');
-        WallSection *s6 = new WallSection(.0,-.15,.41,'x');
+        WallSection(-1,.5,1,'x');
+        WallSection(.4,.2,.8,'y');
+        WallSection(.4,-1,.8,'y');
+        WallSection(.0,.15,.41,'x');
+        WallSection(.0,-.15,.41,'x');
         
         Door * thisDoor1 = new Door();
         thisDoor1->x = 0;
@@ -389,8 +388,29 @@ void Game::reset(){
 }
 
 void Game::clearScreen(){
-    for(int i=0;i<gp.size();i++){
-
-		delete gp[i];
+    for(int i = gp.size() - 1;i > 1; i--){
+    if (gp[i]->type != hero)
+        delete gp[i];
 	}
+}
+
+void Game::WallSection(double x1, double y1, double length, char direction ){
+
+    if (direction == 'x'){
+        for (double i =0; i <=length; i+=.01){
+                Wall* wall = new Wall();
+                wall->x = x1 +i;
+                wall->y = y1 ;
+        }
+    }
+    if (direction == 'y'){
+        for (double i =0; i <=length; i+=.01){
+            Wall* wall = new Wall();
+            wall->x = x1;
+            wall->y = y1+i;
+
+            }
+    }       
+        
+    
 }

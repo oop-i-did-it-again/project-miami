@@ -5,8 +5,8 @@
 #include "Baddy.h"
 #include "Player.h"
 #include "TexRect.h"
+#include "Wall.h"
 #include "Door.h"
-#include "WallSection.h"
 #include <vector>
 #include <iostream>
 #include "DeathMenu.h"
@@ -55,6 +55,7 @@ public:
     void clearScreen();
     float mx;
     float my;
+    void WallSection(double, double, double, char);
 
     Crosshairs* ch;
 };
