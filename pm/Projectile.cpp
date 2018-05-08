@@ -1,6 +1,18 @@
 #include "Projectile.h"
 #include "Game.h"
 
+Projectile::Projectile(float x, float y, float rad, int lifeTime, float speed, float size, weapon b){
+    this->x = x;
+    this->y = y;
+    this->radius = size;
+    this->dir = rad;
+    this->lifeTime = lifeTime;
+    this->speed = speed;
+	this->type = bullet;
+    this->whoseBullet = baddyBullet;
+    this->projectileType = b;
+}
+
 Projectile::Projectile(float x, float y, float rad, int lifeTime, float speed, float size, bulletType a, weapon b){
     this->x = x;
     this->y = y;

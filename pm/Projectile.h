@@ -12,6 +12,7 @@ public:
     int lifeTime;
     float speed;
     float dir;
+    Projectile(float x, float y, float rad, int lifeTime, float speed,float size, weapon);
     Projectile(float x, float y, float rad, int lifeTime, float speed,float size, bulletType, weapon);
     ~Projectile();
     void update(int delta);
