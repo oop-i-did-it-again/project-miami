@@ -29,7 +29,7 @@ void Angelo::update(int delta){
     
     vx = 0.0;
     vy = 0.0;
-    std::cout << "phase: " << phase << std::endl;
+    //std::cout << "phase: " << phase << std::endl;
     switch(phase){
         case 1:
             phase1(delta);
