@@ -29,11 +29,22 @@ class Angelo: public Baddy{
 
         void phase1(int);//entering screen
         void phase2(int);//phase 2
-        void phase3(int);//transfer phase 3
+        void phase3(int);//transfer phase 4?
         void phase4(int);//phase 4
         void phase5(int);//ded?
 
 
+        void shootX();
+        void shootO();
+        int spawnMinionTimer = 0;
+        int spawnMinionCD = 1700;
+
+        int xTimer = 0;
+        int xCD = 800;
+        int oTimer = 0;
+        int oCD = 5000;
+        float radX = 0.0;
+        float radO = 0.0;
 };
 
 #endif

@@ -3,17 +3,19 @@
 #include <iostream>
 #define SIZE 0.2
 using namespace std;
+
 Angelo::Angelo(){
     //speed = .001;
     //radius = 10;
     phase = 1;
     this->type = baddy;
-    this->health = 5000;
+    this->health = 8000;
     this->radius = .25;
     this->y = 0.95;
     this->speed =  0.0007;
     gm->addBaddie(this);
 	model = new TexRect("assets/boss.bmp",1,1,x-SIZE,y+SIZE,SIZE*2,SIZE*2);
+    this->gun = pistol;
 }
 
 Angelo::~Angelo(){
@@ -92,31 +94,25 @@ void Angelo::normalize(){
     
 
 }
-  void Angelo::shoot(float y1, float x1, float y2, float x2,bulletType a){
-      
-      if (gun == shotgun){
-          if(shotgunClip == 0 || shotgunClip == 1){
-                if(shotgunClip == 0)
-                    shotgunClip =20;
-                new Projectile(x2,y2, atan2(y1- y2,x1-x2), 250,.003, .01,a,gun);
-                new Projectile(x2,y2, atan2(y1- y2,x1-x2)+.05, 250,.003,.01,a,gun);
-                new Projectile(x2,y2, atan2(y1- y2,x1-x2)+.1, 250,.003,.01,a,gun);
-                new Projectile(x2,y2, atan2(y1- y2,x1-x2)-.05, 250,.003,.01,a,gun);
-                new Projectile(x2,y2, atan2(y1- y2,x1-x2)-.1, 250,.003,.01,a,gun);
-          }
-          shotgunClip--;
-    }
-
-    if (gun == pistol){
-        if(pistolClip == 0){
-            pistolClip =10;
-            new Projectile(x2,y2, atan2(y1- y2,x1-x2), 1250,.002,.02,a,gun);
+  void Angelo::shootX(){      
+        radX +=0.1;
+        int numBullet = 4 ;  
+        for (int i =0; i < numBullet; i++){
+            new Projectile(this->x,this->y, radX, 25000,.0003, .01 , pistol);
+            radX+= 2.0 / numBullet * 3.14  ;
         }
-        pistolClip--;
-      }
-      
   }
 
+  void Angelo::shootO(){   
+        int numBullet = 25;  
+        for (int i =0; i < numBullet; i++){
+            new Projectile(this->x,this->y, radO, 25000,.0001, .01 , pistol);
+            radO += 2.0 / numBullet * 3.14 ;
+        }
+  }
+  void Angelo::shoot(float y1, float x1, float y2, float x2,bulletType a){
+
+  }
 
 void Angelo::phase1(int delta){
     moveD();
@@ -126,16 +122,55 @@ void Angelo::phase1(int delta){
         y = 0.0;
         phase = 2;
     }
+    if( spawnMinionTimer - 3*spawnMinionTimer/4 < 0){
+        spawnMinionTimer = spawnMinionCD;
+        Baddy* b = new Baddy();
+        int r2 = rand() % 3 +1;
+        if(r2 == 3)
+            b->changeWeapon(shotgun);
+        else
+            b->changeWeapon(pistol);
+    }
 }
 void Angelo::phase2(int delta){
 
+    if(health < 4000){
+        phase = 3;
+    }
+    else if( spawnMinionTimer < 0){
+        spawnMinionTimer = spawnMinionCD;
+        Baddy* b = new Baddy();
+        int r2 = rand() % 3 +1;
+        if(r2 == 3)
+            b->changeWeapon(shotgun);
+        else
+            b->changeWeapon(pistol);
+    }else{
+        spawnMinionTimer-= delta;
+    }
 }
 void Angelo::phase3(int delta){
 
+    if( xTimer < 0){
+        xTimer = xCD;
+        shootX();
+    }else{
+        xTimer -= delta;
+    }
+
+    if( oTimer < 0){
+        oTimer = oCD;
+        shootO();
+    }else{
+        oTimer -= delta;
+    }
+    //wander();
 }
+
 void Angelo::phase4(int delta){
 
 }
+
 void Angelo::phase5(int delta){
 
 }
