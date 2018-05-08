@@ -14,8 +14,8 @@ Angelo::Angelo(){
     this->y = 0.95;
     this->speed =  0.0007;
     gm->addBaddie(this);
-	model = new TexRect("assets/boss2.bmp",1,1,x-SIZE,y+SIZE,SIZE*2,SIZE*2);
-    //model2 = new TexRect("assets/boss_enraged.bmp",1,1,x-SIZE,y+SIZE,SIZE*2,SIZE*2);
+	model = new TexRect("assets/boss.bmp",1,1,x-SIZE,y+SIZE,SIZE*2,SIZE*2);
+    model2 = new TexRect("assets/boss_enraged.bmp",1,1,x-SIZE,y+SIZE,SIZE*2,SIZE*2);
     this->gun = pistol;
 }
 
@@ -69,6 +69,7 @@ void Angelo::update(int delta){
     vx = 0.0;
     vy = 0.0;
 	model->changePos(x-SIZE,y+SIZE);
+    
 }
 
 void Angelo::moveL(){
@@ -90,6 +91,9 @@ void Angelo::moveD(){
 void Angelo::draw()
 {
     if(phase < 4){
+        model->draw();
+    }
+    else{
         model->draw();
     }
 }
@@ -169,7 +173,7 @@ void Angelo::phase2(int delta){
 void Angelo::phase3(int delta){
     if(health < 3000){
 
-
+	    model = new TexRect("assets/boss_enraged.bmp",1,1,x-SIZE,y+SIZE,SIZE*2,SIZE*2);
         phase = 4;
     }
     if( xTimer < 0){
