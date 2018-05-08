@@ -2,7 +2,7 @@
 #include "Game.h"
 #include <iostream>
 #define SIZE 0.2
-
+using namespace std;
 Angelo::Angelo(){
     //speed = .001;
     //radius = 10;
@@ -10,6 +10,8 @@ Angelo::Angelo(){
     this->type = baddy;
     this->health = 5000;
     this->radius = .25;
+    this->y = 0.95;
+    this->speed =  0.0007;
     gm->addBaddie(this);
 	model = new TexRect("assets/boss.bmp",1,1,x-SIZE,y+SIZE,SIZE*2,SIZE*2);
 }
@@ -21,9 +23,10 @@ Angelo::~Angelo(){
 }
 
 void Angelo::update(int delta){
+    
     vx = 0.0;
     vy = 0.0;
-
+    std::cout << "phase: " << phase << std::endl;
     switch(phase){
         case 1:
             phase1(delta);
@@ -116,11 +119,12 @@ void Angelo::normalize(){
 
 
 void Angelo::phase1(int delta){
-    if(y > 0.1 && x < 0.1){
+    moveD();
+    float dy = abs(delta * vy * speed);
+    cout << dy << endl;
+    if(y <= 0.0 + dy && y >= 0.0 - dy){
         y = 0.0;
-        phase++;
-    }else {
-        moveD();
+        phase = 2;
     }
 }
 void Angelo::phase2(int delta){

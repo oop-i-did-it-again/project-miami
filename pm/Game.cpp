@@ -91,7 +91,7 @@ void Game::init(){
     }
     if (gamemode == 3){
         Baddy* angelo = new Angelo();
-        angelo->y = .95;
+
         angelo->changeWeapon(pistol);
         
     }
