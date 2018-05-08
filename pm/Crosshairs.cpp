@@ -1,8 +1,9 @@
 #include "Crosshairs.h"
 #include <iostream>
 #include "Game.h"
-
+#include "Player.h"
 Game* Crosshairs::gm;
+Player* Crosshairs::player;
 Crosshairs::Crosshairs(){
 
 }
@@ -12,7 +13,12 @@ Crosshairs::~Crosshairs(){
 }
 
 void Crosshairs::draw(){
-    float offset = 0.05;
+    if(player == NULL){
+        player = gm->getPlayerObject();
+    }
+
+    float offset = 0.05 + player->recoil;
+
     glColor3d(1.0, 1.0, 1.0);
     for (int i = 0; i <=1; i++){
 

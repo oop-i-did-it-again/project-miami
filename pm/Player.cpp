@@ -6,6 +6,7 @@ Player::Player(){
     //radius = 10;
 	model=new TexRect("assets/player2.bmp",1,1,x-SIZE,y+SIZE,SIZE*2,SIZE*2);
     health = 1000;
+    recoil = 0.0;
 }
 
 Player::~Player(){
@@ -13,6 +14,15 @@ Player::~Player(){
 }
 
 void Player::update(int delta){
+    if(recoil > 0.0){
+        if(recoil > maxRecoil){
+            recoil = maxRecoil;
+        }
+        recoil -= recoilRecoveryRate*delta;
+        if (recoil < 0.0){
+            recoil = 0.0;
+        }
+    }
     normalize();
     px=x;
     py=y;
@@ -67,6 +77,7 @@ void Player::normalize(){
            if(shotgunClip == -1)
                     shotgunClip =2;//reload
           if(shotgunClip >0){
+                recoil += 0.25;
                 new Projectile(x2,y2, atan2(y1- y2,x1-x2), 250,.003, .01,a,gun);
                 new Projectile(x2,y2, atan2(y1- y2,x1-x2)+.05, 250,.003,.01,a,gun);
                 new Projectile(x2,y2, atan2(y1- y2,x1-x2)+.1, 250,.003,.01,a,gun);
@@ -80,6 +91,7 @@ void Player::normalize(){
            if(pistolClip == -1)
                     pistolClip =9;//reload
           if(pistolClip >0){
+                    recoil += 0.05;
                     new Projectile(x2,y2, atan2(y1- y2,x1-x2), 1250,.002,.02,a,gun);
           }
           pistolClip--;

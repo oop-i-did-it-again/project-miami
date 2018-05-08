@@ -7,7 +7,7 @@ float App::y = 0.0;
 
 App::App(const char* label, int x, int y, int w, int h): GlutApp(label, x, y, w, h){
     glutSetWindowTitle("Project Miami");
-    glutSetCursor(GLUT_CURSOR_NONE); 
+    glutSetCursor(GLUT_CURSOR_CROSSHAIR); 
     
     // Initialize state variables
     mx = 0.0;

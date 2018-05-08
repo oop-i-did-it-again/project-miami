@@ -8,7 +8,9 @@ class Player: public Actor{
     public:
         Player();
         ~Player();
-        
+        float recoil;
+        float recoilRecoveryRate = 0.00025;
+        float maxRecoil = 0.5;
         int pistolClip =9;
         int shotgunClip =2;
 
@@ -28,7 +30,6 @@ class Player: public Actor{
         bool left = false;
         bool right = false;
 		void shoot(float,float,float,float,bulletType);
-
 };
 
 #endif
