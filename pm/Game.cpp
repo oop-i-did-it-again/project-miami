@@ -91,6 +91,7 @@ void Game::init(){
     }
     if (gamemode == 3){
         Baddy* angelo = new Angelo();
+        angelo->y = .95;
         angelo->changeWeapon(pistol);
         
     }
@@ -231,11 +232,11 @@ void Game::removeGP(Gamepiece* toErase){
 // DO NOT CALL - Baddies already calls this in its deconstructor
 // use delete instead
 void Game::removeBaddie(Baddy* toErase){
-    std::cout << gp.size() << std::endl;
+    //std::cout << gp.size() << std::endl;
     for(int i = 0; i < baddies.size(); i++){
         if (toErase == baddies[i]){
             baddies.erase(baddies.begin() + i);
-            std::cout << gp.size() << std::endl;
+            //std::cout << gp.size() << std::endl;
         }
     }
 }
@@ -406,7 +407,7 @@ void Game::clearScreen(){
  
     for(int i = gp.size() - 1;i > 0; i--){
         delete gp[i];
-        std::cout << "gp size" << gp.size() << std::endl;
+        //std::cout << "gp size" << gp.size() << std::endl;
     }
     baddies.clear();
     walls.clear();

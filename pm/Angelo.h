@@ -27,6 +27,12 @@ class Angelo: public Baddy{
         bool right = false; 
         void shoot(float,float,float,float,bulletType);
 
+        void phase1(int);//entering screen
+        void phase2(int);//phase 2
+        void phase3(int);//transfer phase 3
+        void phase4(int);//phase 4
+        void phase5(int);//ded?
+
 
 };
 

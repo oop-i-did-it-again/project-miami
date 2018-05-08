@@ -8,13 +8,14 @@ Angelo::Angelo(){
     //radius = 10;
     phase = 1;
     this->type = baddy;
-    this->health = 10000;
+    this->health = 5000;
+    this->radius = .25;
     gm->addBaddie(this);
 	model = new TexRect("assets/boss.bmp",1,1,x-SIZE,y+SIZE,SIZE*2,SIZE*2);
 }
 
 Angelo::~Angelo(){
-    std::cout << "Deleting baddy" << std::endl;
+    //std::cout << "Deleting baddy" << std::endl;
     gm->removeBaddie(this);
 	delete model;
 }
@@ -25,15 +26,23 @@ void Angelo::update(int delta){
 
     switch(phase){
         case 1:
-
+            phase1(delta);
             break;
         case 2:
+            phase2(delta);
             break;
         
         case 3:
+            phase3(delta);
+            break;
+        case 4:
+            phase4(delta);
+            break;
+        case 5:
+            phase5(delta);
             break;
     }
-    
+
     normalize();
     px=x;
     py=y;
@@ -51,7 +60,8 @@ void Angelo::update(int delta){
     }if(y < -.95){
         y = py;
     }
-
+    vx = 0.0;
+    vy = 0.0;
 	model->changePos(x-SIZE,y+SIZE);
 }
 
@@ -103,3 +113,25 @@ void Angelo::normalize(){
       }
       
   }
+
+
+void Angelo::phase1(int delta){
+    if(y > 0.1 && x < 0.1){
+        y = 0.0;
+        phase++;
+    }else {
+        moveD();
+    }
+}
+void Angelo::phase2(int delta){
+
+}
+void Angelo::phase3(int delta){
+
+}
+void Angelo::phase4(int delta){
+
+}
+void Angelo::phase5(int delta){
+
+}

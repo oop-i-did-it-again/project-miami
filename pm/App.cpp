@@ -88,7 +88,7 @@ void App::mouseDown(float x, float y){
     if(playing){
 		Player *p = game->getPlayerObject();
 		p->shoot(y,x,p->y,p->x,heroBullet);
-		cout << p->health << endl;
+		//cout << p->health << endl;
 	}
 
     // Redraw the scene
