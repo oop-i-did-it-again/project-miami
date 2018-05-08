@@ -11,7 +11,7 @@ public:
     ~Player();
     float recoil;
     float recoilRecoveryRate = 0.00025;
-    float maxRecoil = 0.5;
+    float maxRecoil = 0.25;
     int pistolClip =9;
     int shotgunClip =2;
 
