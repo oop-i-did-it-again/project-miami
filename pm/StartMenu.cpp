@@ -19,7 +19,7 @@ void StartMenu::init(){
 }
 
 void StartMenu::draw(){
-	//if(!win)
+	if(!win)
 		background[quality]->draw();
 	 if (win)
 		winscreen->draw();
