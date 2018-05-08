@@ -18,6 +18,7 @@ class Game{
     static Game *instance;
 	int baddiesleft;
 	int death;
+    int gamemode;
     Game();
 public:
     TexRect* background;
