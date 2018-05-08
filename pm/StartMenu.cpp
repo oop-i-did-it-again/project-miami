@@ -19,7 +19,7 @@ void StartMenu::init(){
 }
 
 void StartMenu::draw(){
-	//if(!win)
+	if(!win)
 		background[quality]->draw();
 	 if (win)
 		winscreen->draw();
@@ -39,8 +39,9 @@ int StartMenu::checkKey(unsigned char key){
 		return 2;
 	else if(key == '3')
 		return 3;
-	else
+	else if (key =='1')
 		return 1;
+    
 	return 0;
 		
 }

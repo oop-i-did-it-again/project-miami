@@ -14,7 +14,7 @@ Game* Game::getGame(){
 Game::Game(){
     Gamepiece::setGM(this);
     srand (time(NULL));
-    init();
+    //init();
 }
 
 Game::~Game(){
@@ -28,6 +28,7 @@ void Game::init(){
     // initializes every gamepiece
     // may not be necessary if we gamepieces calls their own inits
     // from their constructors. we shall see
+   
     background = new TexRect("assets/gameboard.bmp",1,1,-1,1,2,2);
 	popup = new DeathMenu();
 	Player* Hero = new Player();
@@ -37,6 +38,9 @@ void Game::init(){
 	std::vector<Wall*> walls;
 	std::vector<Baddy*> baddies;
 	death = 0;
+    
+    std::cout<<gamemode<<std::endl;
+    if (gamemode ==1){
 	for(int i = 0; i <10; i+=1){
 		baddies.push_back(new Baddy());
 		baddies[i]->type = baddy;
@@ -54,14 +58,43 @@ void Game::init(){
 	WallSection *s4 = new WallSection(.3,.5,.7,'x');
 
 	Door * thisDoor = new Door();
-	thisDoor->x = -.7;
+	thisDoor->x = -.71;
+    thisDoor->y = -.9;
+	thisDoor->type = door;
+    }
+    if (gamemode == 2){
+        	for(int i = 0; i <10; i+=1){
+		baddies.push_back(new Baddy());
+		baddies[i]->type = baddy;
+        int r2 = rand() % 3 +1;
+
+        if(r2 == 3)
+            baddies[i]->changeWeapon(shotgun);
+        else
+             baddies[i]->changeWeapon(pistol);
+	}
+
+    
+   
+
+     WallSection *s1 = new WallSection(-1.0,-.75,.3,'x');
+    Door * thisDoor = new Door();
+	thisDoor->x = -.71;
     thisDoor->y = -.9;
 	thisDoor->type = door;
     
-	//Door * thisDoor1 = new Door();
-	//thisDoor1->x = -.7;
-    //thisDoor1->y = -.95;
-	//thisDoor1->type = door;
+    
+    WallSection *s2 = new WallSection(-1,.5,1,'x');
+	WallSection *s3 = new WallSection(.4,.2,.8,'y');
+	WallSection *s4 = new WallSection(.4,-1,.8,'y');
+    WallSection *s5 = new WallSection(.0,.15,.41,'x');
+	WallSection *s6 = new WallSection(.0,-.15,.41,'x');
+    
+    Door * thisDoor1 = new Door();
+	thisDoor1->x = 0;
+    thisDoor1->y = 0;
+	thisDoor1->type = door;
+    }
 }
 
 void Game::update(int delta){
@@ -299,15 +332,8 @@ void Game::checkDoorCollisions(){
  }
  
  void Game::setLevel(int num){
-	 if(num==0)
-		 return;//ignore zero
-	 else if(num==1)
-		 return;
-	 else if(num==2)
-		 return;
-	 else if(num==3)
-		 return;
-	 //from here add walls and enemies 
+gamemode = num;
+init();
  }
  
 int Game::numberOfBaddies(){
