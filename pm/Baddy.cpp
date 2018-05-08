@@ -1,13 +1,17 @@
 #include "Baddy.h"
+#include "Game.h"
 #define SIZE 0.06
 
 Baddy::Baddy(){
     //speed = .001;
     //radius = 10;
+    this->type = baddy;
+    gm->addBaddie(this);
 	model = new TexRect("assets/baddy.bmp",1,1,x-SIZE,y+SIZE,SIZE*2,SIZE*2);
 }
 
 Baddy::~Baddy(){
+    gm->removeBaddie(this);
 	delete model;
 }
 

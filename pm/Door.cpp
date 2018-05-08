@@ -1,5 +1,5 @@
 #include "Door.h"
-
+#include "Game.h"
 
 Door::Door( ){
    
@@ -12,10 +12,12 @@ Door::Door( ){
 
     length = .1;
     height = .2;        
-    
+    this->type = door;
+    gm->addDoor(this);
 }
 
 Door::~Door(){
+    gm->removeDoor(this);
 }
 
 void Door::draw(){

@@ -1,7 +1,7 @@
 #include "Game.h"
 #include <stdio.h>
-Game* Game::instance = 0;
 
+Game* Game::instance = 0;
 
 Game* Game::getGame(){
     if(instance == 0){
@@ -15,11 +15,12 @@ Game::Game(){
     Gamepiece::setGM(this);
     Crosshairs::setGM(this);
     srand (time(NULL));
+    player = Player::getPlayer();
     //init();
+
 }
 
 Game::~Game(){
-	delete getPlayerObject();
 	for(int i=0;i<gp.size();i++){
 		removeGP(gp.at(i));
 	}
@@ -29,85 +30,71 @@ void Game::init(){
     // initializes every gamepiece
     // may not be necessary if we gamepieces calls their own inits
     // from their constructors. we shall see
-   
+    clearScreen();
     background = new TexRect("assets/gameboard.bmp",1,1,-1,1,2,2);
 	popup = new DeathMenu();
-	Player* Hero = Player::getPlayer();
-	Hero->type = hero;
-    Hero->x = -.9;
-    Hero->y = -.9;
-	std::vector<Wall*> walls;
-	std::vector<Baddy*> baddies;
+    ch = new Crosshairs();
+
+
+    player->x = -.9;
+    player->y = -.9;
+    
 	death = 0;
     
     std::cout<<gamemode<<std::endl;
     if (gamemode ==1){
-	for(int i = 0; i <10; i+=1){
-		baddies.push_back(new Baddy());
-		baddies[i]->type = baddy;
-        int r2 = rand() % 3 +1;
+        for(int i = 0; i <10; i+=1){
+            Baddy* b = new Baddy();
+            int r2 = rand() % 3 +1;
+            if(r2 == 3)
+                baddies[i]->changeWeapon(shotgun);
+            else
+                baddies[i]->changeWeapon(pistol);
+        }
+        
+        WallSection(-1.0,-.75,.3,'x');
+        WallSection(-.15,.3,.7,'y');
+        WallSection(.3,0,.7,'x');
+        WallSection(.3,.5,.7,'x');
 
-        if(r2 == 3)
-            baddies[i]->changeWeapon(shotgun);
-        else
-             baddies[i]->changeWeapon(pistol);
-	}
-	
-	WallSection *s1 = new WallSection(-1.0,-.75,.3,'x');
-	WallSection *s2 = new WallSection(-.15,.3,.7,'y');
-	WallSection *s3 = new WallSection(.3,0,.7,'x');
-	WallSection *s4 = new WallSection(.3,.5,.7,'x');
-
-	Door * thisDoor = new Door();
-	thisDoor->x = -.71;
-    thisDoor->y = -.9;
-	thisDoor->type = door;
+        Door * thisDoor = new Door();
+        thisDoor->x = -.71;
+        thisDoor->y = -.9;
     }
     if (gamemode == 2){
-        	for(int i = 0; i <10; i+=1){
-		baddies.push_back(new Baddy());
-		baddies[i]->type = baddy;
-        int r2 = rand() % 3 +1;
+            for(int i = 0; i <10; i+=1){
+            Baddy* b = new Baddy();
+            int r2 = rand() % 3 +1;
+            if(r2 == 3)
+                baddies[i]->changeWeapon(shotgun);
+            else
+                baddies[i]->changeWeapon(pistol);
+        }
 
-        if(r2 == 3)
-            baddies[i]->changeWeapon(shotgun);
-        else
-             baddies[i]->changeWeapon(pistol);
-	}
+        WallSection(-1.0,-.75,.3,'x');
+        Door * thisDoor = new Door();
+        thisDoor->x = -.71;
+        thisDoor->y = -.9;
 
-    
-	//Door * thisDoor1 = new Door();
-	//thisDoor1->x = -.7;
-    //thisDoor1->y = -.95;
-	//thisDoor1->type = door;
-    ch = new Crosshairs();
-   
-
-     WallSection *s1 = new WallSection(-1.0,-.75,.3,'x');
-    Door * thisDoor = new Door();
-	thisDoor->x = -.71;
-    thisDoor->y = -.9;
-	thisDoor->type = door;
-    
-    
-    WallSection *s2 = new WallSection(-1,.5,1,'x');
-	WallSection *s3 = new WallSection(.4,.2,.8,'y');
-	WallSection *s4 = new WallSection(.4,-1,.8,'y');
-    WallSection *s5 = new WallSection(.0,.15,.41,'x');
-	WallSection *s6 = new WallSection(.0,-.15,.41,'x');
-    
-    Door * thisDoor1 = new Door();
-	thisDoor1->x = 0;
-    thisDoor1->y = 0;
-	thisDoor1->type = door;
+        WallSection(-1,.5,1,'x');
+        WallSection(.4,.2,.8,'y');
+        WallSection(.4,-1,.8,'y');
+        WallSection(.0,.15,.41,'x');
+        WallSection(.0,-.15,.41,'x');
+        
+        Door * thisDoor1 = new Door();
+        thisDoor1->x = 0;
+        thisDoor1->y = 0;
+        thisDoor1->type = door;
     }
+
 }
 
 void Game::update(int delta){
     // Calls update function from every gamepiece
     // delta is milliseconds elapsed since last frame
 	baddiesleft = 0;
-    Player* hero = dynamic_cast<Player*>(gp[0]);
+    Player* player = dynamic_cast<Player*>(gp[0]);
 	
 	//baddy movement
 	if(death==1){
@@ -117,19 +104,19 @@ void Game::update(int delta){
 				bad->updateColor(1,0,0);
 			}
 		}
-		hero->updateColor(1,0,0);
+		player->updateColor(1,0,0);
 		background->updateColor(1,0,0);
 		death = 2;
 	}
 	else if(death==-1){
-		hero->health = 1000;
+		player->health = 1000;
 		for(int i=0;i<gp.size();i++){
 			if(gp[i]-> type == baddy){
 				Baddy* bad = dynamic_cast<Baddy*>(gp[i]);
 				bad->updateColor(1,1,1);
 			}
 		}
-		hero->updateColor(1,1,1);
+		player->updateColor(1,1,1);
 		background->updateColor(1,1,1);
 		death = 0;
 	}
@@ -168,21 +155,21 @@ void Game::update(int delta){
 				bad->moveR();
             }
             if (random > 17 )
-                bad->shoot(hero->y,hero->x,bad->y,bad->x, baddyBullet);
+                bad->shoot(player->y,player->x,bad->y,bad->x, baddyBullet);
 		}
 	}
 	
 	checkCollisions();
 
-	//hero movements
-    if (hero->up )
-        hero->moveU();
-    if (hero->down )
-       hero->moveD();
-    if (hero->left )
-        hero->moveL();
-    if (hero->right )
-       hero->moveR();
+	//player movements
+    if (player->up )
+        player->moveU();
+    if (player->down )
+       player->moveD();
+    if (player->left )
+        player->moveL();
+    if (player->right )
+       player->moveR();
 
 	//update every gamepiece
     for(int i = 0; i < gp.size(); i++)
@@ -206,9 +193,20 @@ Player* Game::getPlayerObject(){
 }
 
 
-
 void Game::addGP(Gamepiece* gamepiece){
     this->gp.push_back(gamepiece);
+}
+
+void Game::addBaddie(Baddy* b){
+    this->baddies.push_back(b);
+}
+
+void Game::addWall(Wall* w){
+    this->walls.push_back(w);
+}
+
+void Game::addDoor(Door* d){
+    this->doors.push_back(d);
 }
 
 // DO NOT CALL - GamePieces already calls this in its deconstructor
@@ -222,6 +220,43 @@ void Game::removeGP(Gamepiece* toErase){
         }
     }
 }
+
+// DO NOT CALL - Baddies already calls this in its deconstructor
+// use delete instead
+void Game::removeBaddie(Baddy* toErase){
+   // std::cout << gp.size() << std::endl;
+    for(int i = 0; i < baddies.size(); i++){
+        if (toErase == baddies[i]){
+            baddies.erase(baddies.begin() + i);
+            //std::cout << gp.size() << std::endl;
+        }
+    }
+}
+
+// DO NOT CALL - Walls already calls this in its deconstructor
+// use delete instead
+void Game::removeWall(Wall* toErase){
+   // std::cout << gp.size() << std::endl;
+    for(int i = 0; i < walls.size(); i++){
+        if (toErase == walls[i]){
+            walls.erase(walls.begin() + i);
+            //std::cout << gp.size() << std::endl;
+        }
+    }
+}
+
+// DO NOT CALL - Doors already calls this in its deconstructor
+// use delete instead
+void Game::removeDoor(Door* toErase){
+   // std::cout << gp.size() << std::endl;
+    for(int i = 0; i < doors.size(); i++){
+        if (toErase == doors[i]){
+            doors.erase(doors.begin() + i);
+            //std::cout << gp.size() << std::endl;
+        }
+    }
+}
+
 
 void Game::checkCollisions(){
     
@@ -324,7 +359,7 @@ void Game::checkDoorCollisions(){
     }
     
 }
- bool Game::collides(Gamepiece* a, Gamepiece* b){
+bool Game::collides(Gamepiece* a, Gamepiece* b){
      
 	double D = sqrt( pow(a->x - b->x,2.0)+pow(a->y - b->y,2.0));
     Entity* c = dynamic_cast<Entity*>(a);
@@ -332,26 +367,55 @@ void Game::checkDoorCollisions(){
 
 	return (D< c->radius+d->radius);
 
- }
+}
 
- void Game::checkKey(unsigned char key){
+void Game::checkKey(unsigned char key){
 	 if(key == 'h')
 		 death = -1;
- }
+}
  
- void Game::setLevel(int num){
-gamemode = num;
-init();
- }
+void Game::setLevel(int num){
+    gamemode = num;
+    init();
+}
  
 int Game::numberOfBaddies(){
 	return baddiesleft;
 }
 
 
- void Game::reset(){
-     gp.erase (gp.begin(),gp.end());
-        init();
+void Game::reset(){
+    clearScreen();
+    player->health = 1000;
+    player->updateColor(1.0,1.0,1.0);
+    init();
+}
+
+void Game::clearScreen(){
+    for(int i = gp.size() - 1;i > 0; i--){
+
+        delete gp[i];
+        std::cout << "gp size" << gp.size() << std::endl;
+    }
+}
+
+void Game::WallSection(double x1, double y1, double length, char direction ){
+
+    if (direction == 'x'){
+        for (double i =0; i <=length; i+=.01){
+                Wall* wall = new Wall();
+                wall->x = x1 +i;
+                wall->y = y1 ;
+        }
+    }
+    if (direction == 'y'){
+        for (double i =0; i <=length; i+=.01){
+            Wall* wall = new Wall();
+            wall->x = x1;
+            wall->y = y1+i;
+
+            }
+    }       
         
     
- }
+}
