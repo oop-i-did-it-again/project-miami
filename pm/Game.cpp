@@ -13,6 +13,7 @@ Game* Game::getGame(){
 
 Game::Game(){
     Gamepiece::setGM(this);
+    Crosshairs::setGM(this);
     srand (time(NULL));
     init();
 }
@@ -62,6 +63,7 @@ void Game::init(){
 	//thisDoor1->x = -.7;
     //thisDoor1->y = -.95;
 	//thisDoor1->type = door;
+    ch = new Crosshairs();
 }
 
 void Game::update(int delta){
@@ -151,12 +153,14 @@ void Game::update(int delta){
 }
 
 void Game::draw(){
+    ch->draw();
     //  Calls draw function from every gamepiece
 	if(death>0)
 		popup->draw();
     for(int i = 0; i < gp.size(); i++)
         gp[i]->draw();
 	background->draw();
+
 }
 
 Player* Game::getPlayerObject(){

@@ -9,6 +9,7 @@ class App: public GlutApp {
     // Maintain app state here
     float mx;
     float my;
+
     int t;
     int lastT;
     double delta;
@@ -32,6 +33,9 @@ public:
     void mouseDrag(float x, float y);
 
     double getfttime();
+    static void mouseMove(int,int);
+    static float x;
+    static float y;
 };
 
 #endif

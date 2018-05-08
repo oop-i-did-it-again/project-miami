@@ -2,9 +2,13 @@
 #include <stdio.h>
 using namespace std;
 
+float App::x = 0.0;
+float App::y = 0.0;
+
 App::App(const char* label, int x, int y, int w, int h): GlutApp(label, x, y, w, h){
     glutSetWindowTitle("Project Miami");
-    glutSetCursor(GLUT_CURSOR_CROSSHAIR);
+    glutSetCursor(GLUT_CURSOR_NONE); 
+    
     // Initialize state variables
     mx = 0.0;
     my = 0.0;
@@ -14,6 +18,8 @@ App::App(const char* label, int x, int y, int w, int h): GlutApp(label, x, y, w,
 	playing = false;
     game = Game::getGame();
     startMenu = new StartMenu();
+    glutPassiveMotionFunc(mouseMove);
+    glutMotionFunc(mouseMove);
 }
 
 void App::idle(){
@@ -27,7 +33,10 @@ void App::idle(){
         //cout << "FPS: " << 1000/delta << endl; 
 
         lastT = t;
-        
+        mx = x;
+        my = y;
+        game->mx = this->mx;
+        game->my = this->my;
         if(pause){
             startMenu->displayWin(true,true);
         }
@@ -84,6 +93,11 @@ void App::mouseDown(float x, float y){
 
     // Redraw the scene
     redraw();
+}
+
+void App::mouseMove(int xx, int yy){
+    x = (float)xx/300.0 -1.0;
+    y = -((float)yy/300.0 -1.0);
 }
 
 void App::mouseDrag(float x, float y){

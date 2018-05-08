@@ -10,6 +10,7 @@
 #include <vector>
 #include <iostream>
 #include "DeathMenu.h"
+#include "Crosshairs.h"
 
 class Game{
     std::vector<Gamepiece*> gp; //replace this with array of gamepieces
@@ -38,6 +39,11 @@ public:
 	bool collides(Gamepiece* a, Gamepiece* b);
     bool Doorcollides(Gamepiece* a, Gamepiece* b);
     void reset();
+
+    float mx;
+    float my;
+
+    Crosshairs* ch;
 };
 
 #endif
