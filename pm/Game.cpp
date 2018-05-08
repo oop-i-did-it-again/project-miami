@@ -392,10 +392,10 @@ void Game::reset(){
 }
 
 void Game::clearScreen(){
-    for(int i = gp.size() - 1;i > 1; i--){
-        std::cout << "gp size" << gp.size() << std::endl;
-        delete gp[i];
+    for(int i = gp.size() - 1;i > 0; i--){
 
+        delete gp[i];
+        std::cout << "gp size" << gp.size() << std::endl;
     }
 }
 
