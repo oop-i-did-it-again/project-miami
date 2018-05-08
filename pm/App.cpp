@@ -37,6 +37,7 @@ void App::idle(){
         my = y;
         game->mx = this->mx;
         game->my = this->my;
+        
         if(pause){
             startMenu->displayWin(true,true);
         }
@@ -66,8 +67,7 @@ void App::draw() {
     //Draw gamepieces
     
 	if(playing){
-		game->draw();
-
+        game->draw();
     }
     else if(!playing && pause == false){
         startMenu->draw();

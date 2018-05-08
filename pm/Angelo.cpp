@@ -92,8 +92,7 @@ void Angelo::normalize(){
     
 
 }
-  void Angelo::shoot(float y1, float x1, float y2, float x2,bulletType a){
-      
+ void Angelo::shoot(float y1, float x1, float y2, float x2,bulletType a){
       if (gun == shotgun){
           if(shotgunClip == 0 || shotgunClip == 1){
                 if(shotgunClip == 0)
@@ -115,7 +114,7 @@ void Angelo::normalize(){
         pistolClip--;
       }
       
-  }
+ }
 
 
 void Angelo::phase1(int delta){
@@ -128,6 +127,15 @@ void Angelo::phase1(int delta){
     }
 }
 void Angelo::phase2(int delta){
+    bulletType a = baddyBullet;
+    srand (time(NULL));
+    for(int i = 0; i <8; i++){
+        double d =( rand() % 60)/.1;
+        new Projectile(0,0, d, 1250,.003,.02,a,pistol);
+        
+    }
+                
+                
 
 }
 void Angelo::phase3(int delta){
