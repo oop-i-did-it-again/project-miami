@@ -5,6 +5,7 @@
 
 class Angelo: public Baddy{
     int phase;
+    TexRect *model2;
     public:
         Angelo();
         ~Angelo();
@@ -26,7 +27,7 @@ class Angelo: public Baddy{
         bool left = false;
         bool right = false; 
         void shoot(float,float,float,float,bulletType);
-
+void draw();
         void phase1(int);//entering screen
         void phase2(int);//phase 2
         void phase3(int);//transfer phase 4?

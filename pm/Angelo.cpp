@@ -9,12 +9,20 @@ Angelo::Angelo(){
     //radius = 10;
     phase = 1;
     this->type = baddy;
+<<<<<<< HEAD
     this->health = 4000;
+=======
+    this->health = 9000;
+>>>>>>> today
     this->radius = .25;
     this->y = 0.95;
     this->speed =  0.0007;
     gm->addBaddie(this);
 	model = new TexRect("assets/boss.bmp",1,1,x-SIZE,y+SIZE,SIZE*2,SIZE*2);
+<<<<<<< HEAD
+=======
+    model2 = new TexRect("assets/boss_enraged.bmp",1,1,x-SIZE,y+SIZE,SIZE*2,SIZE*2);
+>>>>>>> today
     this->gun = pistol;
 }
 
@@ -28,7 +36,7 @@ void Angelo::update(int delta){
     
     vx = 0.0;
     vy = 0.0;
-    std::cout << "phase: " << phase << std::endl;
+    //std::cout << "phase: " << phase << std::endl;
     switch(phase){
         case 1:
             phase1(delta);
@@ -68,6 +76,7 @@ void Angelo::update(int delta){
     vx = 0.0;
     vy = 0.0;
 	model->changePos(x-SIZE,y+SIZE);
+    
 }
 
 void Angelo::moveL(){
@@ -86,6 +95,15 @@ void Angelo::moveD(){
     vy = -1.0;
 }
 
+void Angelo::draw()
+{
+    if(phase < 4){
+        model->draw();
+    }
+    else{
+        model->draw();
+    }
+}
 void Angelo::normalize(){
     if(abs(vy) == 1.0 && abs(vx) == 1.0){
         vy = vy * DIAG_VSPEED;
@@ -127,7 +145,7 @@ void Angelo::normalize(){
 void Angelo::phase1(int delta){
     moveD();
     float dy = abs(delta * vy * speed);
-    cout << dy << endl;
+    //cout << dy << endl;
     if(y <= 0.0 + dy && y >= 0.0 - dy){
         y = 0.0;
         phase = 2;
@@ -144,7 +162,11 @@ void Angelo::phase1(int delta){
 }
 void Angelo::phase2(int delta){
 
+<<<<<<< HEAD
     if(health < 4000){
+=======
+    if(health < 6000){
+>>>>>>> today
         phase = 3;
     }
     else if( spawnMinionTimer < 0){
@@ -160,6 +182,24 @@ void Angelo::phase2(int delta){
     }
 }
 void Angelo::phase3(int delta){
+    if(health < 3000){
+
+	    model = new TexRect("assets/boss_enraged.bmp",1,1,x-SIZE,y+SIZE,SIZE*2,SIZE*2);
+        phase = 4;
+    }
+    if( xTimer < 0){
+        xTimer = xCD;
+        shootX();
+    }else{
+        xTimer -= delta;
+    }
+
+    if( oTimer < 0){
+        oTimer = oCD;
+        shootO();
+    }else{
+        oTimer -= delta;
+    }
 
     if( xTimer < 0){
         xTimer = xCD;
@@ -182,9 +222,19 @@ void Angelo::phase3(int delta){
         shotgunTimer -= delta;
     }
 }
+<<<<<<< HEAD
 
 void Angelo::phase4(int delta){
+=======
+>>>>>>> today
 
+void Angelo::phase4(int delta){
+    bulletType a = baddyBullet;
+    srand(time(NULL));
+    for(int i = 0; i < 8; i++){
+        double d = (rand() %60)/.1;
+        new Projectile(0,0,d, 1250,0.003, .02,a ,pistol);
+    }
 }
 
 void Angelo::phase5(int delta){

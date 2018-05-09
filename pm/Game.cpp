@@ -44,7 +44,7 @@ void Game::init(){
     
     std::cout<<gamemode<<std::endl;
     if (gamemode ==1){
-        for(int i = 0; i <10; i+=1){
+        for(int i = 0; i <5; i+=1){
             Baddy* b = new Baddy();
             int r2 = rand() % 3 +1;
             if(r2 == 3)

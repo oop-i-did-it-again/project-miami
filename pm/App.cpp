@@ -37,14 +37,15 @@ void App::idle(){
         my = y;
         game->mx = this->mx;
         game->my = this->my;
+        
         if(pause){
-            startMenu->displayWin(true,true);
+            startMenu->displayWin(false,true);
         }
 		if(playing){
 			game->update(delta);	
 			if(game->numberOfBaddies()==0){
                         
-				startMenu->displayWin(true,pause);
+				startMenu->displayWin(true,false);
 				playing = false;
 			}
 		}
@@ -64,10 +65,10 @@ void App::draw() {
     glLoadIdentity();
 
     //Draw gamepieces
-    
+    if(startMenu->checkWin())
+		pause = false;
 	if(playing){
-		game->draw();
-
+        game->draw();
     }
     else if(!playing && pause == false){
         startMenu->draw();
@@ -125,6 +126,8 @@ void App::keyPress(unsigned char key) {
 		game->setLevel(num);
         	if(key == 'p'){
         pause=!pause;
+		playing=!playing;
+		startMenu->displayWin(false,false);
     }
 			playing = true;
     }
@@ -138,9 +141,11 @@ void App::keyPress(unsigned char key) {
 	if(key == 'p'){
 		playing=!playing;
         pause=!pause;
+		startMenu->displayWin(false,false);
     }
     	if(key == 'r'){
         game->reset();
+		startMenu->displayWin(false,false);
     }
     }
     
