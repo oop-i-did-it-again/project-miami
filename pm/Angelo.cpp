@@ -9,20 +9,13 @@ Angelo::Angelo(){
     //radius = 10;
     phase = 1;
     this->type = baddy;
-<<<<<<< HEAD
-    this->health = 4000;
-=======
     this->health = 9000;
->>>>>>> today
     this->radius = .25;
     this->y = 0.95;
     this->speed =  0.0007;
     gm->addBaddie(this);
 	model = new TexRect("assets/boss.bmp",1,1,x-SIZE,y+SIZE,SIZE*2,SIZE*2);
-<<<<<<< HEAD
-=======
     model2 = new TexRect("assets/boss_enraged.bmp",1,1,x-SIZE,y+SIZE,SIZE*2,SIZE*2);
->>>>>>> today
     this->gun = pistol;
 }
 
@@ -162,11 +155,7 @@ void Angelo::phase1(int delta){
 }
 void Angelo::phase2(int delta){
 
-<<<<<<< HEAD
-    if(health < 4000){
-=======
     if(health < 6000){
->>>>>>> today
         phase = 3;
     }
     else if( spawnMinionTimer < 0){
@@ -222,11 +211,6 @@ void Angelo::phase3(int delta){
         shotgunTimer -= delta;
     }
 }
-<<<<<<< HEAD
-
-void Angelo::phase4(int delta){
-=======
->>>>>>> today
 
 void Angelo::phase4(int delta){
     bulletType a = baddyBullet;

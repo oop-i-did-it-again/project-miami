@@ -12,11 +12,7 @@ public:
     int lifeTime;
     float speed;
     float dir;
-<<<<<<< HEAD
-    Projectile(float x, float y, float rad, int lifeTime, float speed, float size, weapon b);
-=======
     Projectile(float x, float y, float rad, int lifeTime, float speed,float size, weapon);
->>>>>>> today
     Projectile(float x, float y, float rad, int lifeTime, float speed,float size, bulletType, weapon);
     ~Projectile();
     void update(int delta);
