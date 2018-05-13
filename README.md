@@ -6,7 +6,11 @@ Check out the wiki [here](https://github.com/oop-i-did-it-again/project-miami/wi
 Complication Instrcutions:
 
 Linux:
+
 In `/pm` :
+
 `make`
+
 To run:
+
 `./miami`
